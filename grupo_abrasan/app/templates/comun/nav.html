@@ -25,15 +25,6 @@
                 <!-- Nav items -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        {% if perms.app.view_producto %}
-                        <a class="nav-link" href="{% url 'app:listar_inventario' %}">
-                            <i class="fa-solid fa-boxes-stacked text-primary"></i>
-                            <span class="nav-link-text text-white">Inventario</span>
-                        </a>
-                        {% endif %}
-                        
-                    </li>
-                    <li class="nav-item">
                         {% if perms.app.view_obras %}
                         <a class="nav-link" href="{% url 'app:listar_obras' %}">
                             <i class="fa-solid fa-person-digging text-orange"></i>
@@ -48,6 +39,15 @@
                             <span class="nav-link-text text-white">Bodegas</span>
                         </a>
                         {% endif %}
+                    </li>
+                    <li class="nav-item">
+                        {% if perms.app.view_producto %}
+                        <a class="nav-link" href="{% url 'app:listar_inventario' %}">
+                            <i class="fa-solid fa-boxes-stacked text-primary"></i>
+                            <span class="nav-link-text text-white">Inventario</span>
+                        </a>
+                        {% endif %}
+                        
                     </li>
                     <li class="nav-item">
                         {% if perms.app.view_villa %}
