@@ -1,8 +1,7 @@
 
 from email import message
 from email.headerregistry import Group
-from math import prod
-from msilib.schema import File
+
 from typing import Type
 import xml.etree.ElementTree as ET
 from turtle import pen, title
