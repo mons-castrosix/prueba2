@@ -90,3 +90,23 @@ function eliminarProductoBodega(bodega,id){
         }
     })
 }
+
+
+function eliminarSolicitud(solicitud){
+    Swal.fire({
+        "title":"¿Estás seguro de eliminar este registro?",
+        "text": "Esta acción no se puede deshacer.",
+        "icon": "question",
+        "showCancelButton":true,
+        "cancelButtonText":"No, Cancelar.",
+        "confirmButtonText":"Si, Eliminar.",
+        "reverseButtons":true,
+        "confirmButtonColor":"#F20505",
+        "cancelButtonColor":"#110273"
+    }) 
+    .then(function (result){
+        if (result.isConfirmed){
+            window.location.href="/inventario/eliminar-solicitud/"+solicitud+"/"
+        }
+    })
+}

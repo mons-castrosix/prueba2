@@ -582,6 +582,14 @@ def solicitudes(request):
     }
     return render(request,'app/requisiciones/solicitudes.html',data)
 @permission_required('app.view_solicitud')
+
+def eliminar_solicitud(request,solicitud):
+    solicitud=get_list_or_404(Solicitud,solicitud=solicitud)
+    for s in solicitud:
+        s.delete()
+    messages.success(request, "Eliminada correctamente")
+    return redirect("/inventario/solicitudes/")
+    
 def eliminar_prodsolicitud(request,id):
     producto=get_list_or_404(Solicitud,id=id)
     
@@ -823,15 +831,16 @@ def recepcion_registro(request,solicitud):
                     llego=llega
                     producto=Solicitud.objects.select_related('bodegaproducto','compra','recepcion').values('bodegaproducto_id').filter(id=sol)
                     productobodega=BodegaProductos.objects.get(id__in=producto)
-                    
+
                     print(productobodega.cantidad)
                     antes=productobodega.cantidad
                     productobodega.cantidad=int(antes)+int(llego)
-                    print(productobodega.cantidad)
                     productobodega.save()
                     
-                    
-                    
+                    if(productobodega.exist()):
+                        print("ya existe producto en solicitudes")
+                    else:
+                        print("No existe")
                     
                     pend=pendiente[i]
                     if pend == '':
@@ -856,8 +865,8 @@ def recepcion_registro(request,solicitud):
     
         if formulario.is_valid():
                 pass
-                #messages.success(request, "Recepcion Registrada")
-                #return redirect("/inventario/recepcion-bodega/")
+                messages.success(request, "Recepcion Registrada")
+                return redirect("/inventario/recepcion-bodega/")
         else:
                 data["form"]=formulario
     
