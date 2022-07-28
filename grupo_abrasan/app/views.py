@@ -837,10 +837,7 @@ def recepcion_registro(request,solicitud):
                     productobodega.cantidad=int(antes)+int(llego)
                     productobodega.save()
                     
-                    if(productobodega.exist()):
-                        print("ya existe producto en solicitudes")
-                    else:
-                        print("No existe")
+                    
                     
                     pend=pendiente[i]
                     if pend == '':
