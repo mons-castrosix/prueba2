@@ -855,7 +855,7 @@ def recepcion_registro(request,solicitud):
                         formulario=RecepcionForm(datos)
                         print(formulario.errors)
                         print("igual")
-                        #formulario.save()
+                        formulario.save()
                 i+=1
                 x+=1
                 y+=1
