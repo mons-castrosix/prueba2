@@ -740,7 +740,7 @@ def modificar_recepcion(request,id):
                         llegada=request.POST.get("llegada")
                         ant=pend.pendiente-int(request.POST.get("pendiente"))
                         print("Pendiente"+str(pend.pendiente))
-                        utilizado=request.POST.get("utilizado")
+                        #utilizado=request.POST.get("utilizado")
                         #productobodega.cantidad
                         if (pend.pendiente < int(request.POST.get("pendiente"))):
                             messages.error(request, "Verifica los pendientes")
@@ -752,7 +752,6 @@ def modificar_recepcion(request,id):
                             a=ll.llegada+int(ant)
                             print("Nuevo saldo llegada"+str(a))
                             
-                            
                             formulario.pendiente=c
                             print(formulario.pendiente)
                             #print(formulario)
@@ -761,9 +760,11 @@ def modificar_recepcion(request,id):
                             productobodega.cantidad=productobodega.cantidad+ant
                             print("BODEGA"+str(productobodega.cantidad))
                             productobodega.save()
-                            sa=(int(pend.llegada)-int(utilizado))
+                            print("LLEGADA"+str(a) )
+                            print("PENDIENTE"+str(pend.utilizado))
+                            sa=(int(a)-int(pend.utilizado))
                             print("saldo"+str(sa))
-                            Recepcion.objects.filter(id=request.POST.get("solicitud")).update(saldo=sa)
+                            Recepcion.objects.filter(id=pend.id).update(saldo=sa)
                         
                             messages.success(request, "Modificado Correctamente")
                             return redirect("/inventario/ver-recepcion-registro/"+str(nsoli))
@@ -822,11 +823,15 @@ def recepcion_registro(request,solicitud):
                     llego=llega
                     producto=Solicitud.objects.select_related('bodegaproducto','compra','recepcion').values('bodegaproducto_id').filter(id=sol)
                     productobodega=BodegaProductos.objects.get(id__in=producto)
-
+                    
                     print(productobodega.cantidad)
                     antes=productobodega.cantidad
                     productobodega.cantidad=int(antes)+int(llego)
+                    print(productobodega.cantidad)
                     productobodega.save()
+                    
+                    
+                    
                     
                     pend=pendiente[i]
                     if pend == '':
@@ -844,15 +849,15 @@ def recepcion_registro(request,solicitud):
                         formulario=RecepcionForm(datos)
                         print(formulario.errors)
                         print("igual")
-                        formulario.save()
+                        #formulario.save()
                 i+=1
                 x+=1
                 y+=1
     
         if formulario.is_valid():
                 pass
-                messages.success(request, "Recepcion Registrada")
-                return redirect("/inventario/recepcion-bodega/")
+                #messages.success(request, "Recepcion Registrada")
+                #return redirect("/inventario/recepcion-bodega/")
         else:
                 data["form"]=formulario
     
