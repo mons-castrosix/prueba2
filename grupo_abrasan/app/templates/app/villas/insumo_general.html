@@ -1,0 +1,240 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>Inventario</title>
+    {% include "comun/estilos.html"%}
+    {% load bootstrap5 %}
+    <link rel="stylesheet" href={% static 'app/css/inventario.css' %} type="text/css">
+   
+</head>
+
+<body class="bg-white" >
+    <!-- Sidenav -->
+    {% include 'comun/nav.html' %}
+    <!-- Main content -->
+    <div class="main-content bg-white" id="panel">
+        <!-- Topnav -->
+        {% include 'comun/navbar.html' %}
+
+        <div class="header pb-4 border-top">
+            <div class="container-fluid">
+                <div class="header-body">
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-10 offset-md-1">
+              <div class="card">
+                <div class="card-header" style="background-color:#110273;">
+                  <div class="row">     
+                    <div class="col-6">
+                      <h3 style="color:white" id="identificador"><strong>Explosión de Insumos General</strong> </h3>
+                    </div>
+                    <div class="col-6">
+                     
+                    </div>
+                  </div>
+              </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-5 col-sm-5"></div>
+                    <div class="col-7 col-sm-7">
+                      
+                    </div>
+                    
+                  </div>
+                  <div class="container">
+                    <div class="row mt-2">
+                      <div class="col-12">
+                        <div class="table-responsive">
+                          <table cellspacing="0" id="excel" class="table table-hover">
+                            <thead>
+                              <tr>
+                                
+                                <th >Categoria</th>
+                                <th >Unidad</th>
+                                <th>Descripción</th>
+                                <th>Villa</th>
+                                <th >Total</th>
+                                <!--<th>Opciones</th>-->
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {% for p in xvilla %}
+                                <tr style="background-color:#929090;">
+                                                <td style="background-color:#929090">
+                                                    {% if p.bodegaproducto_id__categoria == '1' %}
+                                                    Equipo
+                                                    {% elif p.bodegaproducto_id__categoria == '2' %}
+                                                    Mueble
+                                                    {% elif p.bodegaproducto_id__categoria == '3' %}
+                                                    Accesorio
+                                                    {% elif p.bodegaproducto_id__categoria == '4' %}
+                                                    Herreria
+                                                    {% elif p.bodegaproducto_id__categoria == '5' %}
+                                                    Canceleria
+                                                    {% elif p.bodegaproducto_id__categoria == '6' %}
+                                                    Carpinteria
+                                                    {% elif p.bodegaproducto_id__categoria == '7' %}
+                                                    Acabado
+                                                    {% elif p.bodegaproducto_id__categoria == '8' %}
+                                                    Material
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    {% if p.bodegaproducto_id__unidad == '1' %}
+                                                    Pieza
+                                                    {% elif p.bodegaproducto_id__unidad == '2' %}
+                                                    Cubeta
+                                                    {% elif p.bodegaproducto_id__unidad == '3' %}
+                                                    Galón
+                                                    {% elif p.bodegaproducto_id__unidad == '4' %}
+                                                    Bulto
+                                                    {% elif p.bodegaproducto_id__unidad == '5' %}
+                                                    m³
+                                                    {% elif p.bodegaproducto_id__unidad == '6' %}
+                                                    Kg
+                                                    {% elif p.bodegaproducto_id__unidad == '7' %}
+                                                    Tonelada
+                                                    {% elif p.bodegaproducto_id__unidad == '8' %}
+                                                    Milla
+                                                    {% elif p.bodegaproducto_id__unidad == '9' %}
+                                                    Litro
+                                                    {% elif p.bodegaproducto_id__unidad == '10' %}
+                                                    Juego
+                                                    {% elif p.bodegaproducto_id__unidad == '11' %}
+                                                    Lote
+                                                    {% elif p.bodegaproducto_id__unidad == '12' %}
+                                                    m²
+                                                    {% endif %}
+                                                </td>
+                                                <td><span>{{p.bodegaproducto_id__descripcion}}</span></td>
+                                                <td></td>
+                                                <td  style="color:black; text-align: center; vertical-align: middle; font-weight: 900;"><strong> {{p.total}}</strong></td>
+                                                
+                                               
+                                </tr>
+                                {% for p2 in general  %}
+                                  {% if p.bodegaproducto_id__descripcion == p2.bodegaproducto_id__descripcion %}
+                                <tr>
+                                  
+                                  <td style="background-color:#110273; color:white;">
+                                    {% if p2.bodegaproducto_id__categoria == '1' %}
+                                    Equipo
+                                    {% elif p2.bodegaproducto_id__categoria == '2' %}
+                                    Mueble
+                                    {% elif p2.bodegaproducto_id__categoria == '3' %}
+                                    Accesorio
+                                    {% elif p2.bodegaproducto_id__categoria == '4' %}
+                                    Herreria
+                                    {% elif p2.bodegaproducto_id__categoria == '5' %}
+                                    Canceleria
+                                    {% elif p2.bodegaproducto_id__categoria == '6' %}
+                                    Carpinteria
+                                    {% elif p2.bodegaproducto_id__categoria == '7' %}
+                                    Acabado
+                                    {% elif p2.bodegaproducto_id__categoria == '8' %}
+                                    Material
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if p2.bodegaproducto_id__unidad == '1' %}
+                                    Pieza
+                                    {% elif p2.bodegaproducto_id__unidad == '2' %}
+                                    Cubeta
+                                    {% elif p2.bodegaproducto_id__unidad == '3' %}
+                                    Galón
+                                    {% elif p2.bodegaproducto_id__unidad == '4' %}
+                                    Bulto
+                                    {% elif p2.bodegaproducto_id__unidad == '5' %}
+                                    m³
+                                    {% elif p2.bodegaproducto_id__unidad == '6' %}
+                                    Kg
+                                    {% elif p2.bodegaproducto_id__unidad == '7' %}
+                                    Tonelada
+                                    {% elif p2.bodegaproducto_id__unidad == '8' %}
+                                    Milla
+                                    {% elif p2.bodegaproducto_id__unidad == '9' %}
+                                    Litro
+                                    {% elif p2.bodegaproducto_id__unidad == '10' %}
+                                    Juego
+                                    {% elif p2.bodegaproducto_id__unidad == '11' %}
+                                    Lote
+                                    {% elif p2.bodegaproducto_id__unidad == '12' %}
+                                    m²
+                                    {% endif %}
+                                </td>
+                                <td><span>{{p2.bodegaproducto_id__descripcion}}</span></td>
+                                <td>{{p2.villa_id__identificador}}</td>
+                                <td>{{p2.total}}</td>
+                                  
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                                {% endfor %}
+                            </tbody>
+                          </table>
+                          <hr>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  
+                </div>
+              </div>
+            </div>
+        </div>
+
+        {% include 'comun/script.html' %}
+   
+</body>
+<script type="text/javascript" src= {% static 'app/js/simple_numbers_no_ellipses.js'%}></script>
+<script src={% static "app/js/paginator.js" %}></script>
+<script>
+
+    $(document).ready(function(){
+
+    var date = new Date($.now());
+    var dateString = (date.getFullYear() + '-'+ ('0' + (date.getMonth() + 1)).slice(-2)+ '-' + ('0' + (date.getDate())).slice(-2));
+    console.log(dateString);
+      var dynamicVariable=$("#identificador").find("strong").text();
+      $("#excel").DataTable({
+        "spaginationType": "simple_numbers_no_ellipses",
+          dom:"Bfrtip",
+          "pageLength": 12,
+          buttons:{
+            dom:{
+              button:{
+                className:'btn'
+              }
+            },
+            buttons:[
+            {
+              extend:"excel",
+              text:'Exportar a excel',
+              className:'btn btn-outlime-success',
+              excelStyles:{
+                template:'header_blue'
+              },
+              filename:""+dynamicVariable+"_"+dateString,
+              title:" "+dynamicVariable+" "+dateString,
+              sheetName:" "+dateString
+              
+            }]
+          }
+      });
+     
+    
+      
+      $(".dataTables_info ").hide()
+    })
+    
+    </script>
+</html>

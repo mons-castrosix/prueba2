@@ -38,6 +38,7 @@ urlpatterns=[
     path("modificar-villa/<id>/",views.modificar_villa, name="modificar_villa"),
     path("eliminar-villa/<id>/",views.eliminar_villa, name="eliminar_villa"),
     path("explosion-insumos/<id>/",views.explosion_insumos, name="explosion_insumos"),
+   path("explosion-insumos-general/",views.view_insumosgral, name="explosion_general"),
     
     
     #------------- BODEGA OBRAS --------------------------------------------
