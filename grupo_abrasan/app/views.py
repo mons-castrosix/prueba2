@@ -550,15 +550,17 @@ def solicitud(request,id):
         for u in request.POST.getlist("unidad"):
             un.append(u)
         
-        print(prod)
-        i=0
-        x=0
-        y=0
+        
+        
         ex=Solicitud.objects.filter(solicitud=request.POST.get("solicitud")).exists()
         if(ex):
             messages.error(request,"La solicitud con el nombre que elegiste, ya existe. Intenta de nuevo")
             return redirect("/inventario/listar-producto-bodega/"+str(id))
         else:
+            print(prod)
+            i=0
+            x=0
+            y=0
             for cant in cantidad:
                 if(cant == ''):
                     pass
@@ -573,18 +575,19 @@ def solicitud(request,id):
                     descripcion=desc[x]
                     unidad=un[y]
                     datos={'solicita':solicita,'fecha':fecha,'obra':obra,'solicitud':solicitud,'cantidad':cantidad,'bodegaproducto':bodegaproducto,'descripcion':descripcion,'unidad':unidad}
-                    print(datos)
+                    print(datos)    
                     formulario=SolicitudForm(datos)
                     print(formulario.errors)
                     formulario.save()
                 
                 
-            i+=1
-            y+=1
-            x+=1
+                i+=1
+                y+=1
+                x+=1
             
             
             if formulario.is_valid():
+                pass
                 print(formulario.errors)
                 messages.success(request,"Solicitud enviada")
                 return redirect("/inventario/solicitudes/")
@@ -832,14 +835,16 @@ def recepcion_registro(request,solicitud):
         print(request.POST)
         
         
-        
+        y=0
         i=0
         x=0
-        y=0
+        
         for llega in llegada:
             if(llega == ''):
                 pass
             else:
+                
+                
                 sol=solicitud[y]
                 exist=Recepcion.objects.filter(solicitud_id=sol).exists()
                 print(exist)
@@ -852,6 +857,7 @@ def recepcion_registro(request,solicitud):
                     messages.error(request,"No existe compra registrada para esta recepcion ")
                     return redirect("/inventario/recepcion-bodega/")
                 else:
+                    
                     sal=request.POST.get("saldo")
                     llego=llega
                     producto=Solicitud.objects.select_related('bodegaproducto','compra','recepcion').values('bodegaproducto_id').filter(id=sol)
@@ -876,7 +882,7 @@ def recepcion_registro(request,solicitud):
                         formulario=RecepcionForm()
                         messages.error(request,"El producto con clave de solicitud "+str(compra[i]['solicitud_id'])+" no coincide, Llegada y Pendiente es diferente a la Compra Registrada")
                         #return redirect("/inventario/recepcion-bodega/")
-                    elif (int(compra[i]['compra']) == int(int(llego)+int(pend))):
+                    else:
                         print(productobodega.cantidad)
                         antes=productobodega.cantidad
                         productobodega.cantidad=int(antes)+int(llego)
@@ -896,7 +902,7 @@ def recepcion_registro(request,solicitud):
             else:
                 data["form"]=formulario
     
-    return render(request,'app/requisiciones/recepcion_registro.html',data)  
+    return render(request,'app/requisiciones/recepcion_registro.html',data) 
 @permission_required('app.view_solicitud')
 def requisiciones(request,solicitud):
     solicitudes=Solicitud.objects.select_related('bodegaproducto','compra','recepcion').values('bodegaproducto_id','solicita','unidad','cantidad','solicitud','bodegaproducto_id__cantidad','descripcion','id','solicita','compra','recepcion__llegada','recepcion__pendiente','recepcion__utilizado','recepcion__saldo').filter(solicitud=solicitud)
