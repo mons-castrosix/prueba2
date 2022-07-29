@@ -28,7 +28,6 @@ class Villa(models.Model):
     obra=models.ForeignKey(Obra,to_field="id", on_delete=models.CASCADE,default=1)
 
 
-
 class Bodega(models.Model):
     nombre=models.CharField(max_length=100)
     ubicacion=models.CharField(max_length=600)

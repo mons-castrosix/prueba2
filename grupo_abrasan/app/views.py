@@ -226,10 +226,11 @@ def eliminar_obra(request,id):
 def listar_villas(request):
    
     villas=Villa.objects.all()
-    
-    
+    obras=Obra.objects.all()
+    #villas=Villa.objects.filter(obra_id__in=obras).order_by('obra_id').values()
     
     data={
+        'obras':obras,
         'villas':villas,
     }
     return render(request,'app/villas/villas.html',data)  
@@ -511,7 +512,9 @@ def view_insumos(request,villa):
 #------------------- REQUISICIONES -------------------------------
 @permission_required('app.add_solicitud')
 def solicitud(request,id):
-    productos=BodegaProductos.objects.select_related('bodega').filter(bodega=id).values('id','clave','descripcion','unidad','cantidad','minimo','bodega_id')
+    p=BodegaProductos.objects.select_related('bodega').filter(bodega=id)
+    solicitud=Solicitud.objects.select_related('bodegaproducto').filter(bodegaproducto_id__in=p).values('bodegaproducto_id')
+    productos=BodegaProductos.objects.exclude(id__in=solicitud).filter(bodega_id=id,cantidad=0).values()
     bodega=Bodega.objects.select_related('obra').get(id=id) 
     data={
         'productos':productos,
