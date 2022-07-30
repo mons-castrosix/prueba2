@@ -607,9 +607,9 @@ def solicitudes(request):
     return render(request,'app/requisiciones/solicitudes.html',data)
 @permission_required('app.view_solicitud')
 
-def eliminar_solicitud(request,solicitud):
-    solicitud=get_list_or_404(Solicitud,solicitud=solicitud)
-    for s in solicitud:
+def eliminar_solicitud(request,s):
+    solicitu=get_list_or_404(Solicitud,solicitud=s)
+    for s in solicitu:
         s.delete()
     messages.success(request, "Eliminada correctamente")
     return redirect("/inventario/solicitudes/")
@@ -831,9 +831,9 @@ def recepcion_registro(request,solicitud):
             solicitud.append(s)
         
         print(request.POST)
-        print(llegada)
-        print(pendiente)
-        print(utilizado)
+        #print(llegada)
+        #print(pendiente)
+        #print(utilizado)
         i=0
         x=0
         y=0
@@ -843,7 +843,7 @@ def recepcion_registro(request,solicitud):
             else:
                 sol=solicitud[y]
                 exist=Recepcion.objects.filter(solicitud_id=sol).exists()
-                print(exist)
+                #print(exist)
                 if(exist):
                     formulario=RecepcionForm()
                     messages.error(request,"Ya existe recepción registrada para este producto ")
@@ -863,19 +863,26 @@ def recepcion_registro(request,solicitud):
                     usado=utilizado[x]
                     datos={'solicitud':sol,'llegada':llego,'pendiente':pend,'utilizado':usado,'saldo':sal}
                     print(datos)
-                    print(productobodega.cantidad)
-                    antes=productobodega.cantidad
-                    productobodega.cantidad=int(antes)+int(llego)
-                    productobodega.save()
-                    formulario=RecepcionForm(datos)
-                    print(formulario.errors)
-                    formulario.save()
+                    print("COMPRA"+str(compra[i]['compra']))
+                    if(int(compra[i]['compra']) > int(int(llego)+int(pend)) or int(compra[i]['compra']) < int(int(llego)+int(pend))):
+                        print("no es igual")
+                        formulario=RecepcionForm()
+                        messages.error(request,"El producto con clave de solicitud "+str(compra[i]['solicitud_id'])+" no coincide, Llegada y Pendiente es diferente a la Compra Registrada")
+                    else:
+                        print(productobodega.cantidad)
+                        antes=productobodega.cantidad
+                        productobodega.cantidad=int(antes)+int(llego)
+                        productobodega.save()
+                        formulario=RecepcionForm(datos)
+                        print(formulario.errors)
+                        formulario.save()
+                    
             i+=1
             x+=1
             y+=1
     
         if formulario.is_valid():
-            
+            pass
             messages.success(request, "Recepcion Registrada")
             return redirect("/inventario/recepcion-bodega/")
         else:

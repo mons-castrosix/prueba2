@@ -81,6 +81,7 @@
                                 {% if perms.app.view_solicitud %}
                                 <a class="btn btn-sm" style="background-color:#F20505; color:white" href="{% url 'app:elimina_solicitud' s.solicitud %}" >Eliminar Solicitud</a>
                                 {% endif %}
+                                <!--onclick="eliminarSolicitud({{s.solicitud}})"-->
                               </td>   
                             </tr>
                             {% endfor %}

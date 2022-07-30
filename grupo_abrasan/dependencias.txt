@@ -1,5 +1,17 @@
  pip install django
 
+
+ exist=Recepcion.objects.filter(solicitud_id=sol).exists()
+                print(exist)
+                if(exist):
+                    formulario=RecepcionForm()
+                    messages.error(request,"Ya existe recepción registrada para este producto ")
+                    
+                elif (compra.exists() == False):
+                    formulario=RecepcionForm()
+                    messages.error(request,"No existe compra registrada para esta recepcion ")
+                    
+
 python3 -m pip install django-mysql
 pip install django-bootstrap-v5
 
@@ -96,5 +108,93 @@ solicitudes=Solicitud.objects.select_related('bodegaproducto','compra').values('
                 return redirect("/inventario/recepcion-bodega/")
             else:
                 data["form"]=formulario
+    
+    return render(request,'app/requisiciones/recepcion_registro.html',data)
+
+
+
+
+
+    solicitudes=Solicitud.objects.select_related('bodegaproducto','compra').values('bodegaproducto_id','solicitud','cantidad','descripcion','unidad','bodegaproducto_id__cantidad','compra','id').annotate(total=Count('solicitud')).order_by('solicitud','total').filter(solicitud=solicitud)
+    id=Solicitud.objects.select_related('bodegaproducto','compra','recepcion').values('id').filter(solicitud=solicitud)    
+    compra=Compra.objects.select_related('solicitud').filter(solicitud_id__in=id).values() 
+    data={
+        'solicitudes':solicitudes,
+        'form':RecepcionForm(),
+        'compra':compra
+    }
+    if request.method =="POST":
+        llegada=[]
+        pendiente=[]
+        utilizado=[]
+        solicitud=[]
+        
+        for ll in request.POST.getlist("llegada"):
+            llegada.append(ll)
+        for p in request.POST.getlist("pendiente"):
+            pendiente.append(p)
+        for u in request.POST.getlist("utilizado"):
+            utilizado.append(u)
+            
+        for s in request.POST.getlist("solicitud"):
+            solicitud.append(s)
+        
+        print(request.POST)
+        #print(llegada)
+        #print(pendiente)
+        #print(utilizado)
+        i=0
+        x=0
+        y=0
+        for llega in llegada:
+            if(llega == ''):
+                pass
+            else:
+                sol=solicitud[y]
+                exist=Recepcion.objects.filter(solicitud_id=sol).exists()
+                #print(exist)
+                if(exist):
+                    formulario=RecepcionForm()
+                    messages.error(request,"Ya existe recepción registrada para este producto ")
+                    return redirect("/inventario/recepcion-bodega/")
+                elif (compra.exists() == False):
+                    formulario=RecepcionForm()
+                    messages.error(request,"No existe compra registrada para esta recepcion ")
+                    return redirect("/inventario/recepcion-bodega/")
+                else:
+                    sal=request.POST.get("saldo")
+                    llego=llega
+                    pend=pendiente[i]
+                    producto=Solicitud.objects.select_related('bodegaproducto','compra','recepcion').values('bodegaproducto_id').filter(id=sol)
+                    productobodega=BodegaProductos.objects.get(id__in=producto)
+                    if pend == '':
+                        pend=0
+                    usado=utilizado[x]
+                    datos={'solicitud':sol,'llegada':llego,'pendiente':pend,'utilizado':usado,'saldo':sal}
+                    print(datos)
+                    print("COMPRA"+str(compra[i]['compra']))
+                    if(int(compra[i]['compra']) > int(int(llego)+int(pend)) or int(compra[i]['compra']) < int(int(llego)+int(pend))):
+                        print("no es igual")
+                        formulario=RecepcionForm()
+                        messages.error(request,"El producto con clave de solicitud "+str(compra[i]['solicitud_id'])+" no coincide, Llegada y Pendiente es diferente a la Compra Registrada")
+                    else:
+                        print(productobodega.cantidad)
+                        antes=productobodega.cantidad
+                        productobodega.cantidad=int(antes)+int(llego)
+                        productobodega.save()
+                        formulario=RecepcionForm(datos)
+                        print(formulario.errors)
+                        formulario.save()
+                    
+            i+=1
+            x+=1
+            y+=1
+    
+        if formulario.is_valid():
+            pass
+            messages.success(request, "Recepcion Registrada")
+            return redirect("/inventario/recepcion-bodega/")
+        else:
+            data["form"]=formulario
     
     return render(request,'app/requisiciones/recepcion_registro.html',data)
