@@ -21,6 +21,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required,permission_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+from xml.dom import minidom
+import pandas as pd
 
 # ------------------- INVENTARIO ------------------------------------
 
