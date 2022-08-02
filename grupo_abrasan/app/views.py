@@ -773,8 +773,8 @@ def compra(request,solicitud):
                                     
         if formulario.is_valid():
                 pass
-                #messages.success(request, "Compra Registrada")
-                #return redirect("/inventario/solicitudes/")
+                messages.success(request, "Compra Registrada")
+                return redirect("/inventario/solicitudes/")
         else:
                 data["form"]=formulario
         
