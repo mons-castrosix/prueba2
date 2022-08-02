@@ -626,7 +626,7 @@ def eliminar_prodsolicitud(request,id):
     return redirect("/inventario/solicitudes/")
 
 def leer(file):
-    with open("././media/"+file) as f:
+    with open("././media/"+file, encoding="utf-8") as f:
             tree = minidom.parse(f)
             tags=tree.getElementsByTagName('cfdi:Concepto')
             desc = []
