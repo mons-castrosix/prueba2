@@ -602,7 +602,7 @@ def solicitud(request,id):
 def solicitudes(request):
     #productos=BodegaProductos.objects.select_related('bodega','producto').filter(bodega=id).values('producto_id__id','producto_id__clave','producto_id__descripcion','producto_id__unidad','cantidad','minimo','bodega_id','producto_id')
     #bodega=Bodega.objects.select_related('obra').get(id=id) 
-    solicitud=Solicitud.objects.all().select_related('obra').values('solicitud','obra__nombre').annotate(total=Count('solicitud')).order_by('solicitud','total')
+    solicitud=Solicitud.objects.all().select_related('obra').values('solicitud','obra__nombre','obra_id').annotate(total=Count('solicitud')).order_by('obra_id','solicitud','total')
     data={
         'solicitud':solicitud,
     }
