@@ -654,7 +654,7 @@ def leer(file):
 
 @permission_required('app.add_compra')
 def compra(request,solicitud):
-    solicitudes=Solicitud.objects.filter(solicitud=solicitud)    
+    solicitudes=Solicitud.objects.filter(solicitud=str(solicitud))    
     so=solicitud
     data={
         'solicitudes':solicitudes,
