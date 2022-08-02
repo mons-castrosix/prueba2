@@ -654,7 +654,7 @@ def leer(file):
 
 @permission_required('app.add_compra')
 def compra(request,solicitud):
-    solicitudes=Solicitud.objects.filter(solicitud=solicitud)    
+        solicitudes=Solicitud.objects.filter(solicitud=solicitud)    
     so=solicitud
     data={
         'solicitudes':solicitudes,
@@ -676,7 +676,7 @@ def compra(request,solicitud):
         print("Printed immediately.")
         time.sleep(2.4)
         print("Printed after 2.4 seconds.")
-        #rutas=['xml/4855603HFGCE00867300801810072322261.xml']
+        #rutas=['xml/CFDI_16-0001014.xml','xml/CFDI_FTU0000629.xml','xml/FacCFDI_GMU160422511_GBT-67150081.xml','xml/4855603HFGCE00867300801810072322261.xml']
         #leer("xml/ejemplo.xml")
         lee=Archivos.objects.filter(solicitud=solicitud).values('ruta')
         dfs=[]
@@ -689,11 +689,14 @@ def compra(request,solicitud):
         
         for d in rutas:
             f=leer(d)
+            print(d)
             dfs.append(f)
         
         df2=pd.concat(dfs)
+        
         df2['Total']=round(df2['Importe']/df2['ValorUnitario'])
         df3=df2.groupby('Descripcion').sum()
+        
         print(df3)
         d_factura=[]
         c_factura=[]
@@ -766,8 +769,8 @@ def compra(request,solicitud):
                                     
         if formulario.is_valid():
                 pass
-                messages.success(request, "Compra Registrada")
-                return redirect("/inventario/solicitudes/")
+                #messages.success(request, "Compra Registrada")
+                #return redirect("/inventario/solicitudes/")
         else:
                 data["form"]=formulario
         
