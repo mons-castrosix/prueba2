@@ -84,7 +84,7 @@ class Recepcion(models.Model):
 
 fs = FileSystemStorage(location='app/upload')
 class Archivos(models.Model):
-    solicitud = models.CharField(max_length=20)
+    solicitud = models.CharField(max_length=200)
     fecha = models.DateField(auto_now_add=True)
     ruta = models.FileField(upload_to='xml/',max_length=254)
     
