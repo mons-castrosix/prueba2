@@ -627,9 +627,30 @@ def eliminar_prodsolicitud(request,id):
 
 def leer(file):
     with open("././media/"+file) as f:
-            tree = ET.parse(f)
-            root=tree.getroot()
-            print(root)
+            tree = minidom.parse(f)
+            tags=tree.getElementsByTagName('cfdi:Concepto')
+            desc = []
+            imp = []
+            valU=[]
+            
+           
+            for tagname in tags:
+                
+                descripcion= tagname.attributes['Descripcion'].value
+                #print(descripcion)
+                desc.append(descripcion)
+                cantidad= tagname.attributes['Cantidad'].value
+                print(cantidad)
+                importe= tagname.attributes['Importe'].value
+                imp.append(float(importe))
+                #print(importe)
+                valorUni=tagname.attributes['ValorUnitario'].value
+                valU.append(float(valorUni))
+                #print(valorUni)
+                df = pd.DataFrame({'Descripcion':desc, 'Importe':imp,'ValorUnitario':valU})
+                #print(df)
+    return df
+
 
 @permission_required('app.add_compra')
 def compra(request,solicitud):
