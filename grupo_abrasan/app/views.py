@@ -644,58 +644,120 @@ def compra(request,solicitud):
         for file in request.FILES.getlist("file_field"):
             print(file)
             instance=Archivos(solicitud=so,ruta=file)
-            #instance.save()
-        
-        #leer("xml/ejemplo.xml")
-        
-        
-        
-        solicitud=[]
-        cantidades=[]
-        for s in request.POST.getlist("solicitud"):
-            solicitud.append(s)
-            
-        for c in request.POST.getlist("compra"):
-            cantidades.append(c)
-        
-        print(cantidades)
-        print(solicitud)
-        print(request.POST)
-        
-        i=0
-        for cant in cantidades:
-            if(cant == ''):
-                pass
-            else:
-                sol=solicitud[i]
-                exist=Compra.objects.filter(solicitud_id=sol).exists() 
-                print(exist)
-                if(exist):
-                    print("ya existe")
-                    messages.error(request,"Ya existe compra registrada para este producto")
-                    formulario=CompraForm()
-                else:
-                    cantidad=cant
-                    datos={'solicitud':sol,'compra':cantidad}
-                    formulario=CompraForm(datos)
-                    print(formulario.errors)
-                    formulario.save()
-            i+=1
-            
-    
-        if formulario.is_valid():
-            print(formulario.errors)
-            
-            messages.success(request, "Compra Registrada")
-            return redirect("/inventario/solicitudes/")
-        else:
-            data["form"]=formulario
-            
+            instance.save()
+            print(instance)
 
+        
+        import time
+
+        print("Printed immediately.")
+        time.sleep(2.4)
+        print("Printed after 2.4 seconds.")
+        #rutas=['xml/4855603HFGCE00867300801810072322261.xml']
+        #leer("xml/ejemplo.xml")
+        lee=Archivos.objects.filter(solicitud=solicitud).values('ruta')
+        dfs=[]
+        rutas=[]
+        for r in lee:
+            rut=str(r['ruta'])
+            print(rut)
+            rutas.append(rut)
+            
+        
+        for d in rutas:
+            f=leer(d)
+            dfs.append(f)
+        
+        df2=pd.concat(dfs)
+        df2['Total']=round(df2['Importe']/df2['ValorUnitario'])
+        df3=df2.groupby('Descripcion').sum()
+        print(df3)
+        d_factura=[]
+        c_factura=[]
+        for row in df3.itertuples():
+            factura={'descripcion':row.Index,'cantidad':int(row.Total)}
+            d_factura.append(row.Index)
+            c_factura.append(factura)
+            
+        
+        print(d_factura)
+        #print(c_factura)
+        
+        
+        solicit=[]
+         
+        for s in request.POST.getlist("solicitud"):
+            solicit.append(s)
+       
     
+        osoli=[]    
+        cn=[]   
+        slc=[]        
+        e=""
+        
+        for i in solicit:
+                producto=Solicitud.objects.select_related('bodegaproducto').filter(id=i).values('bodegaproducto_id__descripcion','id')
+                #print(producto)
+                str_match = [s for s in d_factura if s.__contains__(producto[0]['bodegaproducto_id__descripcion'])]
+                if (str_match):
+                    print("Existe" + str(producto[0]['bodegaproducto_id__descripcion']))
+                    osoli.append(str(producto[0]['id']))
+                    cn.append(str(producto[0]['bodegaproducto_id__descripcion']))
+                    #slc.append(str(producto[0]['bodegaproducto_id']))
+                    
+                else:
+                    print("No existe"+str(producto[0]['bodegaproducto_id__descripcion']))
+                    e=e+","+str(producto[0]['bodegaproducto_id__descripcion'])
+                    messages.error(request,"La factura no incluye: "+ str(e))
+                    formulario=CompraForm()
+                    
+        print(osoli)
+        print(cn)
+        for item in c_factura:
+            #print(item['descripcion'])
+                        
+            for m in cn:
+                if(item['descripcion'] == m):
+                    index=d_factura.index(item['descripcion']) 
+                    print(item['descripcion'])
+                    print(index)
+                    index2=cn.index(item['descripcion'])
+                    print(index2)
+                    #print(osoli[index2])
+                    #print(item['descripcion'])
+                    #print(item['cantidad'])
+                    #po=Solicitud.objects.select_related('bodegaproducto').filter(id=osoli[index2]).values('bodegaproducto_id')
+                    #print(po[0]['bodegaproducto_id'])
+                    exist=Compra.objects.filter(solicitud_id=osoli[index2]).exists() 
+                    print(exist)
+                    if(exist):
+                        print("ya existe")
+                        messages.error(request,"Ya existe compra registrada para este producto")
+                        formulario=CompraForm()
+                    else:
+                        datos={'solicitud':osoli[index2],'descripcion':item['descripcion'],'compra':item['cantidad'] }
+                        print(datos)
+                        #print(datos)
+                        formulario=CompraForm(datos)
+                        formulario.save()
+                                    
+        if formulario.is_valid():
+                pass
+                messages.success(request, "Compra Registrada")
+                return redirect("/inventario/solicitudes/")
+        else:
+                data["form"]=formulario
         
        
+        
+                   
+                    
+                        
+        
+        
+               
             
+       
     
     return render(request,'app/requisiciones/compras.html',data)
 @permission_required('app.view_compra')
