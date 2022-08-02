@@ -736,6 +736,10 @@ def compra(request,solicitud):
                     e=e+","+str(producto[0]['bodegaproducto_id__descripcion'])
                     messages.error(request,"La factura no incluye: "+ str(e))
                     formulario=CompraForm()
+                    borra=Archivos.objects.filter(solicitud=solicitud)
+                    for b in borra:
+                        print("BORRA:"+str(b))
+                        b.delete()
                     
         print(osoli)
         print(cn)
