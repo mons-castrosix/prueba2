@@ -35,6 +35,7 @@ $(document).ready(function(){
     });
     
     $(".dtsp-title").hide()
+    $(".dtsp-emptyMessage").hide()
     $(".dtsp-collapseAll").html('Colapsar Todo')
     $(".dtsp-showAll").html('Ver Todo')
     $(".dtsp-clearAll").html('Limpiar todo')
