@@ -33,6 +33,7 @@ MESSAGE_STORAGE= "django.contrib.messages.storage.cookie.CookieStorage"
 
 INSTALLED_APPS = [
     'app.apps.AppConfig',
+    'sitio.apps.SitioConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

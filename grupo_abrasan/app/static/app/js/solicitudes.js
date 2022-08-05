@@ -6,8 +6,10 @@ $(document).ready(function(){
     $("#tabla").DataTable({
       "spaginationType": "simple_numbers_no_ellipses",
       "paging":false,
-      
-        dom:"Bfrtip",
+        searchPanes: {
+          orderable: true
+      },
+        dom:"Plfrtip",
         buttons:{
           dom:{
             button:{
@@ -32,6 +34,6 @@ $(document).ready(function(){
    
     $(".dataTables_info ").hide()
     $(".buttons-excel ").hide()
-   
+    $(".dtsp-disabledButton").hide()
 
   });

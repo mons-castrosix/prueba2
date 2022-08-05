@@ -5,15 +5,19 @@ $(document).ready(function(){
     var dynamicVariable=$("#identificador").find("strong").text();
     $("#tabla").DataTable({
       "spaginationType": "simple_numbers_no_ellipses",
-      "pageLength":12,
-      
-        dom:"Bfrtip",
+      "pageLength":16,
+      searchPanes: {
+         orderable: true,
+         initCollapsed: true
+     },
+        dom:"Pfrtip",
         buttons:{
           dom:{
             button:{
               className:'btn'
             }
           },
+          
           buttons:[
           {
             extend:"excel",
@@ -29,7 +33,11 @@ $(document).ready(function(){
           }]
         }
     });
-   
+    
+    $(".dtsp-title").hide()
+    $(".dtsp-collapseAll").html('Colapsar Todo')
+    $(".dtsp-showAll").html('Ver Todo')
+    $(".dtsp-clearAll").html('Limpiar todo')
     $(".dataTables_info ").hide()
     $(".buttons-excel ").hide()
   });

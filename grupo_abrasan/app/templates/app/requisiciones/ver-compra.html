@@ -148,9 +148,18 @@
         </div>
 
         {% include 'comun/script.html' %}
-        <script src={% static "app/js/solicitudes.js" %}></script>
+        <script src={% static "app/js/paginator.js" %}></script>
    
 </body>
-
+<script>
+    $(document).ready(function(){
+      
+        $(".dataTables_info").hide()
+        $(".dtsp-emptyMessage").hide()
+        $(".dataTables_paginate ").show()
+        
+        
+      })
+  </script>
 
 </html>
