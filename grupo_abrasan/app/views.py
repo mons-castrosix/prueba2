@@ -1,5 +1,5 @@
 
-from email import message
+from email import contentmanager, message
 from email.headerregistry import Group
 from typing import Type
 import xml.etree.ElementTree as ET
@@ -791,6 +791,9 @@ def compra(request,solicitud):
        
     
     return render(request,'app/requisiciones/compras.html',data)
+
+
+
 @permission_required('app.view_compra')
 def ver_compra(request,solicitud):
     
@@ -954,10 +957,12 @@ def recepcion_registro(request,solicitud):
                     if pend == '':
                         pend=0
                     usado=utilizado[x]
-                    datos={'solicitud':sol,'llegada':llego,'pendiente':pend,'utilizado':usado,'saldo':sal}
-                    print(datos)
                     print("COMPRA"+str(compra[i]['compra']))
-                    if(int(compra[i]['compra']) > int(int(llego)+int(pend)) or int(compra[i]['compra']) < int(int(llego)+int(pend))):
+                    pnd=int(compra[i]['compra'])-int(llego)
+                    datos={'solicitud':sol,'llegada':llego,'pendiente':pnd,'utilizado':usado,'saldo':sal}
+                    print(datos)
+                   
+                    if(int(compra[i]['compra']) > int(int(llego)+int(pnd)) or int(compra[i]['compra']) < int(int(llego)+int(pend))):
                         print("no es igual")
                         formulario=RecepcionForm()
                         messages.error(request,"El producto con clave de solicitud "+str(compra[i]['solicitud_id'])+" no coincide, Llegada y Pendiente es diferente a la Compra Registrada")

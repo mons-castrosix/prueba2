@@ -59,7 +59,6 @@
                                         <th>Requisicion</th>
                                         <th>Compras</th>
                                         <th>Llegada</th>
-                                        <th>Pendiente</th>
                                         <th style="visibility:hidden;">Oculto</th>
                                         
                                     </tr>
@@ -108,8 +107,9 @@
                                         {% endfor %}
                                         </td>
                                         <td> <input type="number" name="llegada" id="llegada" required> </td>
-                                        <td><input type="number" name="pendiente" id="pendiente"></td> 
+                                        
                                         <td>
+                                            <input type="hidden" name="pendiente" id="pendiente" value="">
                                             <input type="hidden" name="solicitud" value={{s.id}}>
                                             <input type="hidden" name="saldo" value="0">
                                             <input type="hidden"name="utilizado" value="0">
