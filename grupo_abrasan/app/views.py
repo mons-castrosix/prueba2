@@ -944,6 +944,7 @@ def modificar_recepcion(request,id):
                             #print(formulario)
                             formulario.save()
                             Recepcion.objects.filter(solicitud_id=request.POST.get("solicitud")).update(llegada=a)
+                            r=productobodega.cantidad
                             productobodega.cantidad=productobodega.cantidad+ant
                             print("BODEGA"+str(productobodega.cantidad))
                             productobodega.save()
