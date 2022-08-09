@@ -573,7 +573,7 @@ def view_insumosgral(request):
     #POR VILLA
     i=Insumos.objects.all().select_related('villa','bodegaproducto').values('bodegaproducto_id__descripcion','bodegaproducto_id__unidad','bodegaproducto_id__categoria').annotate(total=Sum('cantidad')).order_by('bodegaproducto_id__descripcion','total') 
     #GENRAL
-    i2=Insumos.objects.all().select_related('villa').values('bodegaproducto_id__descripcion','villa_id__identificador','bodegaproducto_id__unidad','bodegaproducto_id__categoria').annotate(total=Sum('cantidad')).order_by('bodegaproducto_id__descripcion','total')
+    i2=Insumos.objects.all().select_related('villa').values('bodegaproducto_id__descripcion','villa_id__identificador','bodegaproducto_id__unidad','bodegaproducto_id__categoria').annotate(total=Sum('cantidad')).order_by('villa_id__identificador','bodegaproducto_id__descripcion','total')
     
     data={
         'general':i2,
@@ -790,7 +790,10 @@ def compra(request,solicitud):
                     osoli.append(str(producto[0]['id']))
                     cn.append(str(producto[0]['bodegaproducto_id__descripcion']))
                     #slc.append(str(producto[0]['bodegaproducto_id']))
-                    
+                    borra=Archivos.objects.filter(solicitud=solicitud)
+                    for b in borra:
+                        print("BORRA:"+str(b))
+                        b.delete()
                 else:
                     print("No existe"+str(producto[0]['bodegaproducto_id__descripcion']))
                     e=e+","+str(producto[0]['bodegaproducto_id__descripcion'])
