@@ -93,7 +93,7 @@ def listar_inventario(request):
     
     data={'productos':productos,'productos2':productos2}
     print(data)
-    
+
    
     
     return render(request,'app/inventario/inventario.html',data)
@@ -473,6 +473,7 @@ def villa_addproduct(request,id,bodega,bp):
                     if (producto.xvilla >= int(request.POST.get("cantidad")) and x2[0]['total'] >= int(request.POST.get("cantidad")) ): 
                         print("entra")
                         formulario.save()
+                        c=producto.cantidad
                         x= producto.cantidad - int(request.POST.get("cantidad"))
                         producto.cantidad=x
                         producto.save()
@@ -485,7 +486,7 @@ def villa_addproduct(request,id,bodega,bp):
                             print(b)
                             Recepcion.objects.filter(solicitud_id__in=s).update(utilizado=nuevo)
                             m=Recepcion.objects.get(solicitud_id__in=s)
-                            sa=(int(m.llegada)-int(m.utilizado))
+                            sa=(int(c)-int(m.utilizado))
                             print("saldo"+str(sa))
                             Recepcion.objects.filter(id=m.id).update(saldo=sa)
                             messages.success(request, "Producto Agregado Correctamente, tienes "+ str(producto.cantidad)+" disponibles en bodega")
@@ -506,6 +507,7 @@ def villa_addproduct(request,id,bodega,bp):
                 if (producto.xvilla >= int(request.POST.get("cantidad")) and producto.cantidad >= int(request.POST.get("cantidad")) ): 
                         print("entra")
                         formulario.save()
+                        c=producto.cantidad
                         x= producto.cantidad - int(request.POST.get("cantidad"))
                         producto.cantidad=x
                         producto.save()
@@ -518,7 +520,7 @@ def villa_addproduct(request,id,bodega,bp):
                             print(b)
                             Recepcion.objects.filter(solicitud_id__in=s).update(utilizado=nuevo)
                             m=Recepcion.objects.get(solicitud_id__in=s)
-                            sa=(int(m.llegada)-int(m.utilizado))
+                            sa=(int(c)-int(m.utilizado))
                             print("saldo"+str(sa))
                             Recepcion.objects.filter(id=m.id).update(saldo=sa)
                             messages.success(request, "Producto Agregado Correctamente, tienes "+ str(producto.cantidad)+" disponibles en bodega")
@@ -731,6 +733,7 @@ def compra(request,solicitud):
 
         print("Printed immediately.")
         time.sleep(2.4)
+        messages.info(request,"Cargando Factura")
         print("Printed after 2.4 seconds.")
         #rutas=['xml/CFDI_16-0001014.xml','xml/CFDI_FTU0000629.xml','xml/FacCFDI_GMU160422511_GBT-67150081.xml','xml/4855603HFGCE00867300801810072322261.xml']
         #leer("xml/ejemplo.xml")
