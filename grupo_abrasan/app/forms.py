@@ -69,7 +69,8 @@ class BodegaProducto(forms.ModelForm):
                 'descripcion':'Descripción',
                 'unidad':'Unidad',
                 'categoria':'Categoria',
-                'proveedor':'Proveedor'
+                'proveedor':'Proveedor',
+                'xvilla':'Asignar por villa'
                 
                 
             }
@@ -79,9 +80,10 @@ class BodegaProducto(forms.ModelForm):
                 'unidad':forms.Select(attrs={'class':'form-control','id':'unidad','name':'unidad','for':'unidad','required':True}),
                 'descripcion':forms.TextInput(attrs={'class':'form-control','id':'descripcion','name':'descripcion','for':'descripcion','required':True}),
                 'ubicacion':forms.TextInput(attrs={'class':'form-control','id':'ubicacion','name':'ubicacion','for':'ubicacion','required':True}),
-                'cantidad':forms.TextInput(attrs={'class':'form-control','id':'cantidad','name':'cantidad','for':'cantidad','required':True,'readonly':True}),
+                'cantidad':forms.TextInput(attrs={'class':'form-control','id':'cantidad','name':'cantidad','for':'cantidad','required':True}),
                 'minimo':forms.TextInput(attrs={'class':'form-control','id':'minimo','name':'minimo','for':'minimo','required':True}),
                 'ubicacion':forms.TextInput(attrs={'class':'form-control','placeholder':'Ubicacion','id':'ubicacion','for':'ubicacion','name':'ubicacion','required':True}),
+                'xvilla':forms.TextInput(attrs={'class':'form-control','id':'xvilla','name':'xvilla','for':'xvilla','required':True}),
                 
                 
                 

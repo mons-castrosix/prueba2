@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd" Version="3.3" Serie="FA" Folio="344088" Fecha="2022-08-01T16:44:47" Moneda="MXN" SubTotal="6888.41" Total="7990.55" TipoDeComprobante="I" LugarExpedicion="77760" Sello="JBIGPmoizmdjBr/jEkauk4g4BdAhmIPD0288d/2BBx2beupY3GPjypkkM6x8VpHXXvrPQ9uQlyqfXwz/zgfl7o4KuLWXtsaG/RBa87a65hGnR8RF4suPXeZbdfRkF+vS+KIdgJVQvL5PZujq3oLcd/9yRxgnZPDJ0v1Ruvo3X4K9nD8XvUaOzdnlYj+N7IGHonmWZDZdGIxWUiuhwx7kbwrg9lwNOejzKeWrknM3oPGdWWuLqsv4oTGCqxfz9TA6Ub//q+zxUNVyl0eYFLjpW0wR1SYyN4CDb5qj8LiBmxLiELGS6XIwJ1M/9U5612s02CXGOct81qQfaWDTLK5aXw==" NoCertificado="00001000000508321856" Certificado="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" FormaPago="28" CondicionesDePago="CONTADO" TipoCambio="1" MetodoPago="PUE">
+  <cfdi:Emisor Rfc="CRI0105041B7" Nombre="COCOPESA DE LA RIVIERA SA DE CV" RegimenFiscal="601" />
+  <cfdi:Receptor Rfc="VVA201208MK4" UsoCFDI="G01" Nombre="VECTOR VASAN SA DE CV" />
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="31152204" NoIdentificacion="44225CAB-1/8FX" Cantidad="75.000000" ClaveUnidad="MTR" Descripcion="Cable de acero 1/8', flexible recubierto" ValorUnitario="9.913800" Importe="743.54">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="743.54" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="118.97" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="31162600" NoIdentificacion="44082NUDO-1/8" Cantidad="7.000000" ClaveUnidad="XPK" Descripcion="Nudo para cable de 1/8'" ValorUnitario="9.051700" Importe="63.36">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="63.36" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="10.14" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="27112742" NoIdentificacion="100125DILF-436" Cantidad="25.000000" ClaveUnidad="H87" Descripcion="DISCO LIJA 4 1/2 RESPALDO FIBRA GR 36" ValorUnitario="12.069000" Importe="301.73">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="301.73" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="48.28" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="27112742" NoIdentificacion="100124DILF-424" Cantidad="25.000000" ClaveUnidad="H87" Descripcion="DISCO LIJA 4 1/2 GRANO 24" ValorUnitario="12.069000" Importe="301.73">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="301.73" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="48.28" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="27112742" NoIdentificacion="100126DILF-450" Cantidad="25.000000" ClaveUnidad="H87" Descripcion="DISCO LIJA 4 1/2 RESPALDO FIBRA GR 50" ValorUnitario="12.069000" Importe="301.73">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="301.73" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="48.28" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="27112742" NoIdentificacion="100127DILF-480" Cantidad="25.000000" ClaveUnidad="H87" Descripcion="DISCO DE LIJA 4 1/2 RESPALDO FIBRA G80" ValorUnitario="12.069000" Importe="301.73">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="301.73" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="48.28" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="27112742" NoIdentificacion="100160DILF-736" Cantidad="25.000000" ClaveUnidad="H87" Descripcion="DISCO LIJA 7&quot; RESPALDO FIBRA GRANO 36" ValorUnitario="23.275900" Importe="581.90">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="581.90" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="93.10" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="27112742" NoIdentificacion="100161DILF-750" Cantidad="25.000000" ClaveUnidad="H87" Descripcion="DISCO LIJA 7&quot; RESPALDO FIBRA GRANO 50" ValorUnitario="23.275900" Importe="581.90">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="581.90" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="93.10" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="27112742" NoIdentificacion="100162DILF-780" Cantidad="25.000000" ClaveUnidad="H87" Descripcion="DISCO LIJA 7&quot; RESPALDO FIBRA GRANO 80" ValorUnitario="23.275900" Importe="581.90">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="581.90" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="93.10" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="31162800" NoIdentificacion="44351PIJ-1063" Cantidad="200.000000" ClaveUnidad="H87" Descripcion="PIJA MULTIUSOS 10 x 2 1/2 (63MM) CAJA CON 100 PZAS" ValorUnitario="0.620700" Importe="124.14">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="124.14" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="19.86" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="31162800" NoIdentificacion="48700PIJ-1263" Cantidad="200.000000" ClaveUnidad="H87" Descripcion="PIJA MULTIUSOS 12 x 2 1/2 (63MM) CAJA CON 100 PZAS" ValorUnitario="0.905200" Importe="181.04">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="181.04" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="28.97" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="31162000" NoIdentificacion="18269CLANEU-18-50" Cantidad="4.000000" ClaveUnidad="XBX" Descripcion="CLAVOS PARA CLAVADORA NEUMATICA CLNEU-2-50MM,5000 PZAS" ValorUnitario="197.413800" Importe="789.66">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="789.66" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="126.34" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="27112841" NoIdentificacion="11120BAV-9/64" Cantidad="20.000000" ClaveUnidad="H87" Descripcion="Broca de alta velocidad 9/64'" ValorUnitario="12.500000" Importe="250.00">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="250.00" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="40.00" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="27112841" NoIdentificacion="11122BAV-5/32" Cantidad="20.000000" ClaveUnidad="H87" Descripcion="Broca de alta velocidad 5/32'" ValorUnitario="13.793100" Importe="275.86">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="275.86" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="44.14" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="27112836" NoIdentificacion="B-26490" Cantidad="10.000000" ClaveUnidad="H87" Descripcion="PUNTAS #2 CRUZ No 2" ValorUnitario="10.400000" Importe="104.00">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="104.00" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="16.64" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="31191506" NoIdentificacion="2608619383" Cantidad="50.000000" ClaveUnidad="H87" Descripcion="DISCO 4 1/2 DE CORTE METAL E INOX BOSCH" ValorUnitario="7.400000" Importe="370.00">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="370.00" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="59.20" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="31161500" NoIdentificacion="44561TORM-1/4X2" Cantidad="10.000000" ClaveUnidad="H87" Descripcion="Tornillo galv. maquina de 1/4 x 2 CAJA CON 60 PZAS" ValorUnitario="1.264400" Importe="12.64">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="12.64" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="2.02" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="27112221" NoIdentificacion="11702BVI-1/4" Cantidad="5.000000" ClaveUnidad="H87" Descripcion="Broca para vidrio y azulejo, 1/4'" ValorUnitario="41.379300" Importe="206.90">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="206.90" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="33.10" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="31191506" NoIdentificacion="11674DLT-1717" Cantidad="15.000000" ClaveUnidad="H87" Descripcion="Disco laminado, 4-1/2', grano 60, centro 7/8'" ValorUnitario="54.310300" Importe="814.65">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="814.65" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="130.34" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="1102.14">
+    <cfdi:Traslados>
+      <cfdi:Traslado Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="1102.14" />
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" FechaTimbrado="2022-08-01T16:44:59" SelloCFD="JBIGPmoizmdjBr/jEkauk4g4BdAhmIPD0288d/2BBx2beupY3GPjypkkM6x8VpHXXvrPQ9uQlyqfXwz/zgfl7o4KuLWXtsaG/RBa87a65hGnR8RF4suPXeZbdfRkF+vS+KIdgJVQvL5PZujq3oLcd/9yRxgnZPDJ0v1Ruvo3X4K9nD8XvUaOzdnlYj+N7IGHonmWZDZdGIxWUiuhwx7kbwrg9lwNOejzKeWrknM3oPGdWWuLqsv4oTGCqxfz9TA6Ub//q+zxUNVyl0eYFLjpW0wR1SYyN4CDb5qj8LiBmxLiELGS6XIwJ1M/9U5612s02CXGOct81qQfaWDTLK5aXw==" UUID="19929933-7FC2-4A26-B890-CE0097E2C1FD" NoCertificadoSAT="00001000000503727538" RfcProvCertif="SAD110722MQA" SelloSAT="jZnQ6KlAAQoN0rPd1GEPjb9c4gWQAP+CIqWIBmvZMvvQ+DbRHe95KP/0EJ4GjfeCdtSoy6vI3C+aTBNRiEvo4+oz+3n5i+A3QaM76tLXeKbzLeeGflhsnXQJU9efmkuT64+XSeIR9CuHL0T65FcYZLBNBci9Tz0OAKXwZ42ii1Gyg6Mj1a1TwPIUjSg/81w3Lz5W/Sb7xVA7xbNmsNUdhDbAzxXy4WK7jwLHUc1JQ3YZIlhakUvofI8tt6DehR/V5/+35tCoEK0YeY4qCPIRBxxp1uRbQEoUkEq71FexcSr3YqaApYjU2uQDIc/IayGcmt1tdlfDigHODcGxyjGaEw==" />
+  </cfdi:Complemento>
+</cfdi:Comprobante>

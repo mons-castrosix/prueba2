@@ -22,7 +22,7 @@ from django.contrib.auth.decorators import login_required,permission_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from xml.dom import minidom
-import pandas as pd
+#import pandas as pd
 
 # ------------------- INVENTARIO ------------------------------------
 
@@ -448,34 +448,80 @@ def villa_addproduct(request,id,bodega,bp):
         formulario=InsumosForm(data=request.POST)
         print(request.POST)
         print(formulario.errors)
-        if formulario.is_valid():
-            if (producto.cantidad >= int(request.POST.get("cantidad"))): 
-                    print("entra")
-                    formulario.save()
-                    x= producto.cantidad - int(request.POST.get("cantidad"))
-                    producto.cantidad=x
-                    producto.save()
-                    
-                    try:
-                        s=Solicitud.objects.select_related('bodegaproducto').filter(bodegaproducto_id=bp).values('id')
-                        b=Solicitud.objects.select_related('bodegaproducto','compra','recepcion').filter(id__in=s).values('recepcion__utilizado').first()
-                        anterior=int(b['recepcion__utilizado'])
-                        nuevo=anterior+int(request.POST.get("cantidad"))
-                        print(b)
-                        Recepcion.objects.filter(solicitud_id__in=s).update(utilizado=nuevo)
-                        m=Recepcion.objects.get(solicitud_id__in=s)
-                        sa=(int(m.llegada)-int(m.utilizado))
-                        print("saldo"+str(sa))
-                        Recepcion.objects.filter(id=m.id).update(saldo=sa)
-                        messages.success(request, "Producto Agregado Correctamente, tienes "+ str(producto.cantidad)+" disponibles en bodega")
-                        return redirect("/inventario/listar-producto-bodega/"+bodega+"/")
-                    except TypeError:
-                        messages.success(request, "Producto Agregado Correctamente, tienes "+ str(producto.cantidad)+" disponibles en bodega")
-                        return redirect("/inventario/listar-producto-bodega/"+bodega+"/")
+        x=Insumos.objects.filter(bodegaproducto_id=request.POST.get("bodegaproducto"),villa_id=request.POST.get("villa")).values('bodegaproducto_id').annotate(total=Sum('cantidad')).order_by('bodegaproducto_id').exists()
+        x2=Insumos.objects.filter(bodegaproducto_id=request.POST.get("bodegaproducto"),villa_id=request.POST.get("villa")).values('bodegaproducto_id').annotate(total=Sum('cantidad')).order_by('bodegaproducto_id')
+        if (x):
+            print("EXISTEEEEEEEEEEEE")
+            #print(x2[0]['total'])
+            #print(producto.xvilla)
+            
+            if (x2[0]['total'] >= producto.xvilla ): 
+                print(producto.xvilla)
+                print(x2[0]['total'])
+                messages.error(request,"Ya tienes agregados los "+str(producto.xvilla)+"  productos asignados para esta villa")
             else:
+                 if formulario.is_valid():
+                    if (producto.xvilla >= int(request.POST.get("cantidad")) and x2[0]['total'] >= int(request.POST.get("cantidad")) ): 
+                        print("entra")
+                        formulario.save()
+                        x= producto.cantidad - int(request.POST.get("cantidad"))
+                        producto.cantidad=x
+                        producto.save()
+                        
+                        try:
+                            s=Solicitud.objects.select_related('bodegaproducto').filter(bodegaproducto_id=bp).values('id')
+                            b=Solicitud.objects.select_related('bodegaproducto','compra','recepcion').filter(id__in=s).values('recepcion__utilizado').first()
+                            anterior=int(b['recepcion__utilizado'])
+                            nuevo=anterior+int(request.POST.get("cantidad"))
+                            print(b)
+                            Recepcion.objects.filter(solicitud_id__in=s).update(utilizado=nuevo)
+                            m=Recepcion.objects.get(solicitud_id__in=s)
+                            sa=(int(m.llegada)-int(m.utilizado))
+                            print("saldo"+str(sa))
+                            Recepcion.objects.filter(id=m.id).update(saldo=sa)
+                            messages.success(request, "Producto Agregado Correctamente, tienes "+ str(producto.cantidad)+" disponibles en bodega")
+                            return redirect("/inventario/listar-producto-bodega/"+bodega+"/")
+                        except TypeError:
+                            messages.success(request, "Producto Agregado Correctamente, tienes "+ str(producto.cantidad)+" disponibles en bodega")
+                            return redirect("/inventario/listar-producto-bodega/"+bodega+"/")
+                    else:
+                        print(formulario.errors)
+                        messages.error(request, "No se agrego producto, se asignaron "+str(producto.xvilla)+" productos por villa,"+" tienes  "+str(producto.cantidad)+" productos disponibles en bodega"+" y ya tenias agregado "+str(x2[0]['total'])+".")
+                        return redirect("/inventario/listar-producto-bodega/"+bodega+"/")
+                            
+        else:
+            print("NOOOOOOOOOOO EXISTEEEEEEEEEEEE")
+            if formulario.is_valid():
+                print(producto.xvilla)
+                print(request.POST.get("cantidad"))
+                if (producto.xvilla >= int(request.POST.get("cantidad")) and producto.cantidad >= int(request.POST.get("cantidad")) ): 
+                        print("entra")
+                        formulario.save()
+                        x= producto.cantidad - int(request.POST.get("cantidad"))
+                        producto.cantidad=x
+                        producto.save()
+                        
+                        try:
+                            s=Solicitud.objects.select_related('bodegaproducto').filter(bodegaproducto_id=bp).values('id')
+                            b=Solicitud.objects.select_related('bodegaproducto','compra','recepcion').filter(id__in=s).values('recepcion__utilizado').first()
+                            anterior=int(b['recepcion__utilizado'])
+                            nuevo=anterior+int(request.POST.get("cantidad"))
+                            print(b)
+                            Recepcion.objects.filter(solicitud_id__in=s).update(utilizado=nuevo)
+                            m=Recepcion.objects.get(solicitud_id__in=s)
+                            sa=(int(m.llegada)-int(m.utilizado))
+                            print("saldo"+str(sa))
+                            Recepcion.objects.filter(id=m.id).update(saldo=sa)
+                            messages.success(request, "Producto Agregado Correctamente, tienes "+ str(producto.cantidad)+" disponibles en bodega")
+                            return redirect("/inventario/listar-producto-bodega/"+bodega+"/")
+                        except TypeError:
+                            messages.success(request, "Producto Agregado Correctamente, tienes "+ str(producto.cantidad)+" disponibles en bodega")
+                            return redirect("/inventario/listar-producto-bodega/"+bodega+"/")
+                else:
                     print(formulario.errors)
-                    messages.error(request, "No se agrego producto, tienes "+str(producto.cantidad)+" disponible en inventario")
+                    messages.error(request, "No se agrego producto, se asignaron "+str(producto.xvilla)+" productos por villa."+"   Y tienes  "+str(producto.cantidad)+" productos disponibles en bodega.")
                     return redirect("/inventario/listar-producto-bodega/"+bodega+"/")
+                
     return render(request,'app/bodega/asignar-a-villa.html',data)
 
 @permission_required('app.view_insumos')
@@ -529,7 +575,7 @@ def view_insumosgral(request):
 def solicitud(request,id):
     p=BodegaProductos.objects.select_related('bodega').filter(bodega=id)
     solicitud=Solicitud.objects.select_related('bodegaproducto').filter(bodegaproducto_id__in=p).values('bodegaproducto_id')
-    productos=BodegaProductos.objects.exclude(id__in=solicitud).filter(bodega_id=id,cantidad=0).values()
+    productos=BodegaProductos.objects.exclude(id__in=solicitud).filter(bodega_id=id).values()
     bodega=Bodega.objects.select_related('obra').get(id=id) 
     data={
         'productos':productos,

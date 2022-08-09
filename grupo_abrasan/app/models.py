@@ -49,6 +49,7 @@ class BodegaProductos(models.Model):
     ubicacion=models.CharField(max_length=200, default="")
     cantidad=models.IntegerField(null=True, default=0)
     minimo=models.IntegerField(null=True,default=0)
+    xvilla=models.IntegerField(null=True, default=0)
 
 
 

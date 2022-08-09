@@ -60,17 +60,21 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-3">
                                             {{form.unidad.label_tag}} <br>
                                             {{form.unidad}}
                                         </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-3">
                                             {{form.cantidad.label_tag}}
                                             {{form.cantidad}}
                                         </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-3">
                                             {{form.minimo.label_tag}}
                                             {{form.minimo}}
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            {{form.xvilla.label_tag}}
+                                            {{form.xvilla}}
                                         </div>
                                     </div>
                                     <a type="reset" value="Cancelar" style="background-color:#F20505; color:white" href="{% url 'app:listar_productobodega' bodega.id %}" class="btn btn-md">Cancelar</a>
