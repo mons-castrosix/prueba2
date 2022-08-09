@@ -25,6 +25,7 @@ urlpatterns=[
     path("agregar-bodega/",views.agregar_bodega, name="agregar_bodega"),
     path("modificar-bodega/<id>/",views.modificar_bodega, name="modificar_bodega"),
     path("eliminar-bodega/<id>/",views.eliminar_bodega, name="eliminar_bodega"),
+    path("insumos-bodega/<id>/",views.ins_bodega, name="insumos_bodega"),
     
     #------------------ O B R A S ----------------------------------------
     path("listar-obras/",views.listar_obras, name="listar_obras"),

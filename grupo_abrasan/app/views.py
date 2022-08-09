@@ -12,7 +12,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.db.models import Count   
-from django.db.models import Sum      
+from django.db.models import Sum,F
 import datetime
 import json
 from django.contrib.auth.models import Group
@@ -98,6 +98,15 @@ def listar_inventario(request):
     
     return render(request,'app/inventario/inventario.html',data)
 
+
+def ins_bodega(request,id):
+    
+    productos=BodegaProductos.objects.all().select_related('obra','bodega').filter(bodega_id=id).values('clave','categoria','unidad','descripcion','xvilla','bodega_id__obra_id__total_villas').annotate(total=Sum(F('xvilla') * F('bodega_id__obra_id__total_villas')))
+    data={
+        'insumos':productos,
+        
+    }
+    return render(request,'app/bodega/insumo_gral.html',data)
 
 @permission_required('app.change_producto')
 def modificar_producto(request,id,bodega):
@@ -726,6 +735,7 @@ def compra(request,solicitud):
         #rutas=['xml/CFDI_16-0001014.xml','xml/CFDI_FTU0000629.xml','xml/FacCFDI_GMU160422511_GBT-67150081.xml','xml/4855603HFGCE00867300801810072322261.xml']
         #leer("xml/ejemplo.xml")
         lee=Archivos.objects.filter(solicitud=solicitud).values('ruta')
+        print(lee)
         dfs=[]
         rutas=[]
         for r in lee:
