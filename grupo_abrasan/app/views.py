@@ -950,7 +950,7 @@ def modificar_recepcion(request,id):
                             productobodega.save()
                             print("LLEGADA"+str(a) )
                             print("PENDIENTE"+str(pend.utilizado))
-                            sa=(int(productobodega.cantidad)
+                            sa=(int(productobodega.cantidad))
                             print("saldo"+str(sa))
                             Recepcion.objects.filter(id=pend.id).update(saldo=sa)
                         
