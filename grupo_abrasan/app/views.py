@@ -666,7 +666,7 @@ def solicitudes(request):
     return render(request,'app/requisiciones/solicitudes.html',data)
 @permission_required('app.view_solicitud')
 
-def eliminar_solicitud(request,s):
+def eliminar_solicitud(request,solicitud):
     solicitu=get_list_or_404(Solicitud,solicitud=s)
     for s in solicitu:
         s.delete()
