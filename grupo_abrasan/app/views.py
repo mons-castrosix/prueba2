@@ -84,7 +84,7 @@ def panel(request):
     
     return render(request,'app/dashboard.html',data)
 
-@permission_required('app.view_bodegaproductos')
+@permission_required('app.view_producto')
 def listar_inventario(request):
     #PRODUCTOS GENERAL
     productos=BodegaProductos.objects.all().select_related('obra').values('categoria','unidad','descripcion').annotate(total=Sum('cantidad')).order_by('descripcion','total')
@@ -609,42 +609,49 @@ def solicitud(request,id):
         for u in request.POST.getlist("unidad"):
             un.append(u)
         
-        print(prod)
-        i=0
-        x=0
-        y=0
-        for cant in cantidad:
-            if(cant == ''):
-                pass
-            else:
-                solicita=request.POST.get("solicita")
-                fecha=request.POST.get("fecha")
-                obra=request.POST.get("obra")
-                solicitud=request.POST.get("solicitud")
-                cantidad=cant
-                bodegaproducto=prod[i]
-                print(bodegaproducto)
-                descripcion=desc[x]
-                unidad=un[y]
-                datos={'solicita':solicita,'fecha':fecha,'obra':obra,'solicitud':solicitud,'cantidad':cantidad,'bodegaproducto':bodegaproducto,'descripcion':descripcion,'unidad':unidad}
-                print(datos)
-                formulario=SolicitudForm(datos)
-                print(formulario.errors)
-                formulario.save()
-            
-                
-            i+=1
-            y+=1
-            x+=1
-            
-            
-        if formulario.is_valid():
-            print(formulario.errors)
-            messages.success(request,"Solicitud enviada")
-            return redirect("/inventario/solicitudes/")
+        
+        
+        ex=Solicitud.objects.filter(solicitud=request.POST.get("solicitud")).exists()
+        if(ex):
+            messages.error(request,"La solicitud con el nombre que elegiste, ya existe. Intenta de nuevo")
+            return redirect("/inventario/listar-producto-bodega/"+str(id))
         else:
-            data["form"]=formulario
+            print(prod)
+            i=0
+            x=0
+            y=0
+            for cant in cantidad:
+                if(cant == ''):
+                    pass
+                else:
+                    solicita=request.POST.get("solicita")
+                    fecha=request.POST.get("fecha")
+                    obra=request.POST.get("obra")
+                    solicitud=request.POST.get("solicitud")
+                    cantidad=cant
+                    bodegaproducto=prod[i]
+                    print(bodegaproducto)
+                    descripcion=desc[x]
+                    unidad=un[y]
+                    datos={'solicita':solicita,'fecha':fecha,'obra':obra,'solicitud':solicitud,'cantidad':cantidad,'bodegaproducto':bodegaproducto,'descripcion':descripcion,'unidad':unidad}
+                    print(datos)    
+                    formulario=SolicitudForm(datos)
+                    print(formulario.errors)
+                    formulario.save()
                 
+                
+                i+=1
+                y+=1
+                x+=1
+            
+            
+            if formulario.is_valid():
+                pass
+                print(formulario.errors)
+                messages.success(request,"Solicitud enviada")
+                return redirect("/inventario/solicitudes/")
+            else:
+                data["form"]=formulario
                     
     
     return render(request,'app/requisiciones/solicitud.html',data)
@@ -652,7 +659,7 @@ def solicitud(request,id):
 def solicitudes(request):
     #productos=BodegaProductos.objects.select_related('bodega','producto').filter(bodega=id).values('producto_id__id','producto_id__clave','producto_id__descripcion','producto_id__unidad','cantidad','minimo','bodega_id','producto_id')
     #bodega=Bodega.objects.select_related('obra').get(id=id) 
-    solicitud=Solicitud.objects.all().select_related('obra').values('id','solicitud','obra__nombre','obra_id').annotate(total=Count('solicitud')).order_by('obra_id','solicitud','total')
+    solicitud=Solicitud.objects.all().select_related('obra').values('solicitud','obra__nombre').annotate(total=Count('solicitud')).order_by('solicitud','total')
     data={
         'solicitud':solicitud,
     }
