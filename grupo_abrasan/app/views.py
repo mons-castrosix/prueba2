@@ -667,7 +667,8 @@ def solicitudes(request):
 @permission_required('app.view_solicitud')
 
 def eliminar_solicitud(request,solicitud):
-    solicitu=get_list_or_404(Solicitud,solicitud=s)
+    
+    solicitu=get_list_or_404(Solicitud,solicitud=solicitud)
     for s in solicitu:
         s.delete()
     messages.success(request, "Eliminada correctamente")
