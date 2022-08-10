@@ -36,5 +36,7 @@ $(document).ready(function(){
     $(".buttons-excel ").hide()
     $(".dtsp-disabledButton").hide()
     $(".dtsp-searchPanes").hide() 
+    $(".dtsp-panesContainer").hide() 
+    
 
   });
