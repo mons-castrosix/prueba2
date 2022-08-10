@@ -36,7 +36,7 @@
                           <h3 style="color:white">Productos en {{bodega.nombre}}</h3>
                         </div>
                         <div class="col-6">
-                          {% if perms.app.add_bodegaproducto %}
+                          {% if perms.app.add_bodegaproductos %}
                           <a class="btn btn-sm float-right" style="background-color:#F20505; color:white;" href="{% url 'app:agregar_producto' bodega.id %}">Agregar Producto de Inventario</a>
                           {% endif %}
                         </div>
