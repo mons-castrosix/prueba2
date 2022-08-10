@@ -92,7 +92,7 @@ function eliminarProductoBodega(bodega,id){
 }
 
 
-function eliminarSolicitud(solicitud){
+function eliminarSolicitud(s){
     Swal.fire({
         "title":"¿Estás seguro de eliminar este registro?",
         "text": "Esta acción no se puede deshacer.",
@@ -106,7 +106,7 @@ function eliminarSolicitud(solicitud){
     }) 
     .then(function (result){
         if (result.isConfirmed){
-            window.location.href="/inventario/eliminar-solicitud/"+solicitud+"/"
+            window.location.href="/inventario/eliminar-solicitud/"+s+"/"
         }
     })
 }
