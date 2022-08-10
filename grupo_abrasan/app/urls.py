@@ -53,7 +53,7 @@ urlpatterns=[
    #------------------- SOLICITUD REQUISICION ---------------------------------
    path("solicitud-requisicion/<id>/",views.solicitud,name="solicitud_requisicion"),
    path("solicitudes/",views.solicitudes,name="listar_solicitudes"),
-   path("eliminar-solicitud/<s>",views.eliminar_solicitud,name="elimina_solicitud"),
+   path("eliminar-solicitud/<solicitud>",views.eliminar_solicitud,name="elimina_solicitud"),
    path("eliminar-producto-solicitud/<id>",views.eliminar_prodsolicitud,name="eliminarprod_solicitud"),
    path("compras/<solicitud>",views.compra,name="compras"),
    path("modificar-compra/<id>/",views.modificar_compra,name="modificar_compra"),
