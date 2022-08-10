@@ -797,8 +797,13 @@ def compra(request,solicitud):
                 else:
                     print("No existe"+str(producto[0]['bodegaproducto_id__descripcion']))
                     e=e+","+str(producto[0]['bodegaproducto_id__descripcion'])
-                    messages.error(request,"La factura no incluye: "+ str(e))
-                    formulario=CompraForm()
+                    #messages.error(request,"La factura no incluye: "+ str(e))
+                    osoli.append(str(producto[0]['id']))
+                    cn.append(str(producto[0]['bodegaproducto_id__descripcion']))
+                    factura={'descripcion':str(producto[0]['bodegaproducto_id__descripcion']),'cantidad':int(0)}
+                    
+                    c_factura.append(factura)
+                    d_factura.append(str(producto[0]['bodegaproducto_id__descripcion']))
                     borra=Archivos.objects.filter(solicitud=solicitud)
                     for b in borra:
                         print("BORRA:"+str(b))
@@ -836,7 +841,11 @@ def compra(request,solicitud):
                                     
         if formulario.is_valid():
                 pass
-                messages.success(request, "Compra Registrada")
+                if(e != ''):
+                    messages.success(request, "Compra Registrada, La factura no incluye: "+ str(e))
+                else:
+                    messages.success(request, "Compra Registrada")
+                
                 return redirect("/inventario/solicitudes/")
         else:
                 data["form"]=formulario
