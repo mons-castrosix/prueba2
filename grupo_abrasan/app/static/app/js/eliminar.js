@@ -106,7 +106,7 @@ function eliminarSolicitud(solicitud){
     }) 
     .then(function (result){
         if (result.isConfirmed){
-            window.location.href="/inventario/eliminar-solicitud/"+solicitud+"/"
+            window.location.href="/inventario/eliminar-solicitud/"+str(solicitud)+"/"
         }
     })
 }
