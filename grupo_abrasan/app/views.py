@@ -84,7 +84,7 @@ def panel(request):
     
     return render(request,'app/dashboard.html',data)
 
-@permission_required('app.view_productos')
+@permission_required('app.view_bodegaproductos')
 def listar_inventario(request):
     #PRODUCTOS GENERAL
     productos=BodegaProductos.objects.all().select_related('obra').values('categoria','unidad','descripcion').annotate(total=Sum('cantidad')).order_by('descripcion','total')
