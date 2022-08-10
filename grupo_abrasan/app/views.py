@@ -609,49 +609,42 @@ def solicitud(request,id):
         for u in request.POST.getlist("unidad"):
             un.append(u)
         
-        
-        
-        ex=Solicitud.objects.filter(solicitud=request.POST.get("solicitud")).exists()
-        if(ex):
-            messages.error(request,"La solicitud con el nombre que elegiste, ya existe. Intenta de nuevo")
-            return redirect("/inventario/listar-producto-bodega/"+str(id))
-        else:
-            print(prod)
-            i=0
-            x=0
-            y=0
-            for cant in cantidad:
-                if(cant == ''):
-                    pass
-                else:
-                    solicita=request.POST.get("solicita")
-                    fecha=request.POST.get("fecha")
-                    obra=request.POST.get("obra")
-                    solicitud=request.POST.get("solicitud")
-                    cantidad=cant
-                    bodegaproducto=prod[i]
-                    print(bodegaproducto)
-                    descripcion=desc[x]
-                    unidad=un[y]
-                    datos={'solicita':solicita,'fecha':fecha,'obra':obra,'solicitud':solicitud,'cantidad':cantidad,'bodegaproducto':bodegaproducto,'descripcion':descripcion,'unidad':unidad}
-                    print(datos)    
-                    formulario=SolicitudForm(datos)
-                    print(formulario.errors)
-                    formulario.save()
-                
-                
-                i+=1
-                y+=1
-                x+=1
-            
-            
-            if formulario.is_valid():
+        print(prod)
+        i=0
+        x=0
+        y=0
+        for cant in cantidad:
+            if(cant == ''):
                 pass
-                print(formulario.errors)
-                messages.success(request,"Solicitud enviada")
-                return redirect("/inventario/solicitudes/")
             else:
-                data["form"]=formulario
+                solicita=request.POST.get("solicita")
+                fecha=request.POST.get("fecha")
+                obra=request.POST.get("obra")
+                solicitud=request.POST.get("solicitud")
+                cantidad=cant
+                bodegaproducto=prod[i]
+                print(bodegaproducto)
+                descripcion=desc[x]
+                unidad=un[y]
+                datos={'solicita':solicita,'fecha':fecha,'obra':obra,'solicitud':solicitud,'cantidad':cantidad,'bodegaproducto':bodegaproducto,'descripcion':descripcion,'unidad':unidad}
+                print(datos)
+                formulario=SolicitudForm(datos)
+                print(formulario.errors)
+                formulario.save()
+            
+                
+            i+=1
+            y+=1
+            x+=1
+            
+            
+        if formulario.is_valid():
+            print(formulario.errors)
+            messages.success(request,"Solicitud enviada")
+            return redirect("/inventario/solicitudes/")
+        else:
+            data["form"]=formulario
+                
                     
     
     return render(request,'app/requisiciones/solicitud.html',data)
