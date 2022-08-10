@@ -35,5 +35,6 @@ $(document).ready(function(){
     $(".dataTables_info ").hide()
     $(".buttons-excel ").hide()
     $(".dtsp-disabledButton").hide()
+    $(".dtsp-searchPanes").hide()
 
   });
