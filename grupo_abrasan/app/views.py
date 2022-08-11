@@ -937,7 +937,7 @@ def recepcion_registro(request,solicitud):
                         productobodega.save()
                         formulario=RecepcionForm(datos)
                         print(formulario.errors)
-                        #formulario.save()
+                        formulario.save()
                     
             i+=1
             x+=1
@@ -946,7 +946,7 @@ def recepcion_registro(request,solicitud):
         if formulario.is_valid():
             pass
             messages.success(request, "Recepcion Registrada")
-            #return redirect("/inventario/recepcion-bodega/")
+            return redirect("/inventario/recepcion-bodega/")
         else:
             data["form"]=formulario
     
