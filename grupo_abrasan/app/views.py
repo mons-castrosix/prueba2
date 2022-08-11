@@ -740,7 +740,7 @@ def compra(request,solicitud):
                 if(exist):
                     formulario=RecepcionForm()
                     messages.error(request,"Ya existe compra registrada para esta solicitud ")
-                    return redirect("/inventario/recepcion-bodega/")
+                    return redirect("/inventario/solicitudes/")
                 else:
                     datos={'solicitud':sol,'compra':cantidad}
                     formulario=CompraForm(datos)
@@ -827,10 +827,13 @@ def modificar_recepcion(request,id):
     #SALDO PRODUCTO EN BODEGA + LLEGADA - UTILIZADO
     data={
         'form':RecepcionForm(instance=recepcion),
-        'solicitudes':solicitudes
+        'solicitudes':solicitudes,
+        'inicial':pend.inicial,
     }
     if request.method =="POST":
             formulario=RecepcionForm(data=request.POST,instance=recepcion)
+            print(formulario.errors)
+            print(request.POST)
             if formulario.is_valid():
                         llegada=request.POST.get("llegada")
                         ant=pend.pendiente-int(request.POST.get("pendiente"))
