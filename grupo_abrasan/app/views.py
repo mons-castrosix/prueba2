@@ -736,10 +736,16 @@ def compra(request,solicitud):
             else:
                 sol=solicitud[i]
                 cantidad=cant
-                datos={'solicitud':sol,'compra':cantidad}
-                formulario=CompraForm(datos)
-                print(formulario.errors)
-                formulario.save()
+                exist=Compra.objects.filter(solicitud_id=sol).exists()
+                if(exist):
+                    formulario=RecepcionForm()
+                    messages.error(request,"Ya existe compra registrada para esta solicitud ")
+                    return redirect("/inventario/recepcion-bodega/")
+                else:
+                    datos={'solicitud':sol,'compra':cantidad}
+                    formulario=CompraForm(datos)
+                    print(formulario.errors)
+                    formulario.save()
             i+=1
             
     
@@ -797,7 +803,7 @@ def recepcion_bodega(request):
     return render(request,'app/requisiciones/recepcion.html',data)  
 @permission_required('app.view_recepcion')
 def ver_recepcion(request,solicitud):
-    solicitudes=Solicitud.objects.select_related('bodegaproducto','compra','recepcion').values('bodegaproducto_id','cantidad','unidad','solicitud','bodegaproducto_id__cantidad','descripcion','id','solicita','compra','recepcion__llegada','recepcion__pendiente','recepcion__utilizado','recepcion__saldo').filter(solicitud=solicitud)
+    solicitudes=Solicitud.objects.select_related('bodegaproducto','compra','recepcion').values('bodegaproducto_id','cantidad','unidad','solicitud','bodegaproducto_id__cantidad','descripcion','id','solicita','compra','recepcion__llegada','recepcion__pendiente','recepcion__inicial','recepcion__utilizado','recepcion__saldo').filter(solicitud=solicitud)
     id=Solicitud.objects.select_related('bodegaproducto','compra','recepcion').values('id').filter(solicitud=solicitud)    
     compra=Compra.objects.select_related('solicitud').filter(solicitud_id__in=id).values() 
     data={
@@ -921,17 +927,18 @@ def recepcion_registro(request,solicitud):
                     usado=utilizado[x]
                     print("COMPRA"+str(compra[i]['compra']))
                     pnd=int(compra[i]['compra'])-int(llego)
-                    datos={'solicitud':sol,'llegada':llego,'pendiente':pnd,'utilizado':usado,'saldo':sal}
-                    print(datos)
-                   
+                    print(productobodega.cantidad)
+                    datos={'solicitud':sol,'llegada':llego,'pendiente':pnd,'utilizado':usado,'saldo':sal,'inicial':productobodega.cantidad}
+                    
+                    
                     if(int(compra[i]['compra']) > int(int(llego)+int(pnd)) or int(compra[i]['compra']) < int(int(llego)+int(pend))):
                         print("no es igual")
                         messages.error(request,"El producto con clave de solicitud "+str(compra[i]['solicitud_id'])+" no coincide, Llegada y Pendiente es diferente a la Compra Registrada")
                         formulario=RecepcionForm()
                         break
                     else:
-                        
-                        print(productobodega.cantidad)
+                                        
+                        print(datos)
                         antes=productobodega.cantidad
                         productobodega.cantidad=int(antes)+int(llego)
                         productobodega.save()
@@ -953,7 +960,7 @@ def recepcion_registro(request,solicitud):
     return render(request,'app/requisiciones/recepcion_registro.html',data)
 @permission_required('app.view_solicitud')
 def requisiciones(request,solicitud):
-    solicitudes=Solicitud.objects.select_related('bodegaproducto','compra','recepcion').values('bodegaproducto_id','solicita','unidad','cantidad','solicitud','bodegaproducto_id__cantidad','descripcion','id','solicita','compra','recepcion__llegada','recepcion__pendiente','recepcion__utilizado','recepcion__saldo').filter(solicitud=solicitud)
+    solicitudes=Solicitud.objects.select_related('bodegaproducto','compra','recepcion').values('bodegaproducto_id','solicita','unidad','cantidad','solicitud','bodegaproducto_id__cantidad','descripcion','id','solicita','compra','recepcion__llegada','recepcion__inicial','recepcion__pendiente','recepcion__utilizado','recepcion__saldo').filter(solicitud=solicitud)
     id=Solicitud.objects.select_related('bodegaproducto','compra','recepcion').values('id').filter(solicitud=solicitud)    
     compra=Compra.objects.select_related('solicitud').filter(solicitud_id__in=id).values() 
     solicita=Solicitud.objects.select_related('obra').values('solicita','fecha','obra__nombre').filter(solicitud=solicitud).first()

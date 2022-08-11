@@ -69,6 +69,7 @@
                                         <th>Clave solicitud</th>
                                         <th>Producto</th>
                                         <th >Bodega</th>
+                                        <th>Inicial</th>
                                         <th>Unidad</th>
                                         <th>Requisicion</th>
                                         <th>Compras</th>
@@ -85,6 +86,7 @@
                                         <td>{{s.id}}</td>
                                         <td>{{s.descripcion}}</td>
                                         <td><strong> {{s.bodegaproducto_id__cantidad}}</strong></td>
+                                        <td>{{s.recepcion__inicial}}</td>
                                         <td>
                                           {% if s.unidad == '1' %}
                                           Pieza

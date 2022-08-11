@@ -78,6 +78,7 @@ class Compra(models.Model):
     
 class Recepcion(models.Model):
     solicitud=models.ForeignKey(Solicitud,to_field="id",on_delete=models.CASCADE)
+    inicial=models.IntegerField(null=True, default=0)
     llegada=models.IntegerField(null=True, default=0)
     pendiente=models.IntegerField(null=True, default=0)
     utilizado=models.IntegerField(null=True, default=0)
