@@ -50,7 +50,7 @@
                                     {% csrf_token %}
 
                                 <div class="table-responsive">
-                                    <div><input type="file" name="file_field" id="file_field" multiple required></input>
+                                   
                                 <table cellspacing="0" id="tabla" class="table table-hover">
                                     <thead>
                                     <tr>
@@ -104,6 +104,7 @@
 
                                         </td>
                                         
+                                        <td><input type="number" name="compra" id="compra" required></td> 
                                         <td><input type="hidden" name="solicitud" value={{s.id}}></td>  
                                     </tr>
                                     {% endfor %}

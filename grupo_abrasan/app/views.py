@@ -22,7 +22,7 @@ from django.contrib.auth.decorators import login_required,permission_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from xml.dom import minidom
-import pandas as pd
+
 
 # ------------------- INVENTARIO ------------------------------------
 
@@ -712,156 +712,45 @@ def leer(file):
 
 @permission_required('app.add_compra')
 def compra(request,solicitud):
-    k=str(solicitud)
-    solicitudes=Solicitud.objects.filter(solicitud=k)    
-    so=solicitud
+    solicitudes=Solicitud.objects.filter(solicitud=solicitud)    
+    
     data={
         'solicitudes':solicitudes,
         'form':CompraForm(),
-        'files':FileForm(),
     }  
-    
     if request.method =="POST":
-        print(request.POST)
-        for file in request.FILES.getlist("file_field"):
-            print(file)
-            instance=Archivos(solicitud=so,ruta=file)
-            instance.save()
-            print(instance)
-
-        
-        import time
-
-        print("Printed immediately.")
-        time.sleep(2.4)
-        messages.info(request,"Cargando Factura")
-        print("Printed after 2.4 seconds.")
-        #rutas=['xml/CFDI_16-0001014.xml','xml/CFDI_FTU0000629.xml','xml/FacCFDI_GMU160422511_GBT-67150081.xml','xml/4855603HFGCE00867300801810072322261.xml']
-        #leer("xml/ejemplo.xml")
-        lee=Archivos.objects.filter(solicitud=solicitud).values('ruta')
-        print(lee)
-        dfs=[]
-        rutas=[]
-        for r in lee:
-            rut=str(r['ruta'])
-            print(rut)
-            rutas.append(rut)
-            
-        
-        for d in rutas:
-            f=leer(d)
-            print(d)
-            dfs.append(f)
-        
-        df2=pd.concat(dfs)
-        
-        df2['Total']=round(df2['Importe']/df2['ValorUnitario'])
-        df3=df2.groupby('Descripcion').sum()
-        
-        print(df3)
-        d_factura=[]
-        c_factura=[]
-        for row in df3.itertuples():
-            factura={'descripcion':row.Index,'cantidad':int(row.Total)}
-            d_factura.append(row.Index)
-            c_factura.append(factura)
-            
-        
-        print(d_factura)
-        #print(c_factura)
-        
-        
-        solicit=[]
-         
+        solicitud=[]
+        cantidades=[]
         for s in request.POST.getlist("solicitud"):
-            solicit.append(s)
-       
-    
-        osoli=[]    
-        cn=[]   
-        slc=[]        
-        e=""
+            solicitud.append(s)
+        for c in request.POST.getlist("compra"):
+            cantidades.append(c)
         
-        for i in solicit:
-                producto=Solicitud.objects.select_related('bodegaproducto').filter(id=i).values('bodegaproducto_id__descripcion','id')
-                #print(producto)
-                str_match = [s for s in d_factura if s.__contains__(producto[0]['bodegaproducto_id__descripcion'])]
-                if (str_match):
-                    print("Existe" + str(producto[0]['bodegaproducto_id__descripcion']))
-                    osoli.append(str(producto[0]['id']))
-                    cn.append(str(producto[0]['bodegaproducto_id__descripcion']))
-                    #slc.append(str(producto[0]['bodegaproducto_id']))
-                    borra=Archivos.objects.filter(solicitud=solicitud)
-                    for b in borra:
-                        print("BORRA:"+str(b))
-                        b.delete()
-                else:
-                    print("No existe"+str(producto[0]['bodegaproducto_id__descripcion']))
-                    e=e+","+str(producto[0]['bodegaproducto_id__descripcion'])
-                    #messages.error(request,"La factura no incluye: "+ str(e))
-                    osoli.append(str(producto[0]['id']))
-                    cn.append(str(producto[0]['bodegaproducto_id__descripcion']))
-                    factura={'descripcion':str(producto[0]['bodegaproducto_id__descripcion']),'cantidad':int(0)}
-                    
-                    c_factura.append(factura)
-                    d_factura.append(str(producto[0]['bodegaproducto_id__descripcion']))
-                    borra=Archivos.objects.filter(solicitud=solicitud)
-                    for b in borra:
-                        print("BORRA:"+str(b))
-                        b.delete()
-                    
-        print(osoli)
-        print(cn)
-        for item in c_factura:
-            #print(item['descripcion'])
-                        
-            for m in cn:
-                if(item['descripcion'] == m):
-                    index=d_factura.index(item['descripcion']) 
-                    print(item['descripcion'])
-                    print(index)
-                    index2=cn.index(item['descripcion'])
-                    print(index2)
-                    #print(osoli[index2])
-                    #print(item['descripcion'])
-                    #print(item['cantidad'])
-                    #po=Solicitud.objects.select_related('bodegaproducto').filter(id=osoli[index2]).values('bodegaproducto_id')
-                    #print(po[0]['bodegaproducto_id'])
-                    exist=Compra.objects.filter(solicitud_id=osoli[index2]).exists() 
-                    print(exist)
-                    if(exist):
-                        print("ya existe")
-                        messages.error(request,"Ya existe compra registrada para este producto")
-                        formulario=CompraForm()
-                    else:
-                        datos={'solicitud':osoli[index2],'descripcion':item['descripcion'],'compra':item['cantidad'] }
-                        print(datos)
-                        #print(datos)
-                        formulario=CompraForm(datos)
-                        formulario.save()
-                                    
-        if formulario.is_valid():
+        print(cantidades)
+        print(solicitud)
+        
+        i=0
+        for cant in cantidades:
+            if(cant == ''):
                 pass
-                if(e != ''):
-                    messages.success(request, "Compra Registrada, La factura no incluye: "+ str(e))
-                else:
-                    messages.success(request, "Compra Registrada")
-                
-                return redirect("/inventario/solicitudes/")
-        else:
-                data["form"]=formulario
-        
-       
-        
-                   
-                    
-                        
-        
-        
-               
+            else:
+                sol=solicitud[i]
+                cantidad=cant
+                datos={'solicitud':sol,'compra':cantidad}
+                formulario=CompraForm(datos)
+                print(formulario.errors)
+                formulario.save()
+            i+=1
             
-       
     
+        if formulario.is_valid():
+            print(formulario.errors)
+            
+            messages.success(request, "Compra Registrada")
+            return redirect("/inventario/solicitudes/")
+        else:
+            data["form"]=formulario
+            
     return render(request,'app/requisiciones/compras.html',data)
 
 
@@ -1037,16 +926,18 @@ def recepcion_registro(request,solicitud):
                    
                     if(int(compra[i]['compra']) > int(int(llego)+int(pnd)) or int(compra[i]['compra']) < int(int(llego)+int(pend))):
                         print("no es igual")
-                        formulario=RecepcionForm()
                         messages.error(request,"El producto con clave de solicitud "+str(compra[i]['solicitud_id'])+" no coincide, Llegada y Pendiente es diferente a la Compra Registrada")
+                        formulario=RecepcionForm()
+                        break
                     else:
+                        
                         print(productobodega.cantidad)
                         antes=productobodega.cantidad
                         productobodega.cantidad=int(antes)+int(llego)
                         productobodega.save()
                         formulario=RecepcionForm(datos)
                         print(formulario.errors)
-                        formulario.save()
+                        #formulario.save()
                     
             i+=1
             x+=1
@@ -1055,7 +946,7 @@ def recepcion_registro(request,solicitud):
         if formulario.is_valid():
             pass
             messages.success(request, "Recepcion Registrada")
-            return redirect("/inventario/recepcion-bodega/")
+            #return redirect("/inventario/recepcion-bodega/")
         else:
             data["form"]=formulario
     
