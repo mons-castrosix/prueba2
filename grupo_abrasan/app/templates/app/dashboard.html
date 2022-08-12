@@ -174,9 +174,11 @@
                             <h3 class="mb-0 text-white" >Últimas solicitudes</h3>
                           </div>
                           <div class="col text-right">
-                            <a href="#!" class="btn btn-sm btn-primary" style="background-color:#F20505; border-color:#F20505">
+                            {% if perms.app.add_compra %}
+                            <a href="{% url 'app:listar_solicitudes' %}" class="btn btn-sm btn-primary" style="background-color:#F20505; border-color:#F20505">
                               <span class="nav-link-text text-white">Ver Todo</span>
                             </a>
+                            {% endif %}
                           </div>
                         </div>
                       </div>
