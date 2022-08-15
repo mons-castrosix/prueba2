@@ -18,7 +18,7 @@ class Obra(models.Model):
     choices_status=[('1','Pendiente'),('2','Finalizado'),('3','En proceso')]
     nombre=models.CharField(max_length=300)
     ubicacion=models.CharField(max_length=300)
-    total_villas=models.IntegerField(null=True, default=0)
+    total_villas=models.IntegerField(null=True)
     status=models.CharField(max_length=50, choices=choices_status,default="En proceso")
     
 
@@ -37,8 +37,8 @@ class Bodega(models.Model):
 
 class BodegaProductos(models.Model):
     
-    choices_categoria=[('1','EQUIPO'),('2','MUEBLE'),('3','ACCESORIO'),('4','HERRERIA'),('5','CANCELERIA'),('6','CARPINTERIA'),('7','ACABADO'),('8','MATERIAL')]
-    choices_unidad=[('1','PIEZA'),('2','CUBETA'),('3','GALON'),('4','BULTO'),('5','m3'),('6','KG'),('7','TONELADA'),('8','MILLA'),('9','LITRO'),('10','JUEGO'),('11','LOTE'),('12','m2')]
+    choices_categoria=[('','ELIGE UNA OPCION'),('1','EQUIPO'),('2','MUEBLE'),('3','ACCESORIO'),('4','HERRERIA'),('5','CANCELERIA'),('6','CARPINTERIA'),('7','ACABADO'),('8','MATERIAL')]
+    choices_unidad=[('','ELIGE UNA OPCION'),('1','PIEZA'),('2','CUBETA'),('3','GALON'),('4','BULTO'),('5','m3'),('6','KG'),('7','TONELADA'),('8','MILLA'),('9','LITRO'),('10','JUEGO'),('11','LOTE'),('12','m2')]
     
     clave=models.CharField(max_length=30, unique=True,default="")
     categoria=models.CharField(max_length=80, choices=choices_categoria,default=0)
@@ -47,9 +47,9 @@ class BodegaProductos(models.Model):
     proveedor = models.CharField(max_length=500,default="")
     bodega=models.ForeignKey(Bodega,to_field="id", on_delete=models.CASCADE)
     ubicacion=models.CharField(max_length=200, default="")
-    cantidad=models.IntegerField(null=True, default=0)
+    cantidad=models.IntegerField(null=True)
     minimo=models.IntegerField(null=True,default=0)
-    xvilla=models.IntegerField(null=True, default=0)
+    xvilla=models.IntegerField(null=True)
 
 
 
@@ -59,7 +59,7 @@ class Insumos(models.Model):
     villa=models.ForeignKey(Villa,to_field="id",on_delete=models.CASCADE)
     bodegaproducto=models.ForeignKey(BodegaProductos,to_field="id",on_delete=models.CASCADE,null=True)
     fecha=models.DateField("fecha_explosion_insumo")
-    cantidad=models.IntegerField(null=True, default=0)
+    cantidad=models.IntegerField(null=True)
     notas=models.CharField(max_length=800,default='',null=True,blank=True)
     
 class Solicitud(models.Model):

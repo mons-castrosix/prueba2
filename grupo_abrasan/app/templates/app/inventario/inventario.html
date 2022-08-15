@@ -114,7 +114,7 @@
                                                   {% endif %}
                                               </td>
                                               <td><span>{{p.descripcion}}</span></td>
-                                              <td></td>
+                                              <td>GENERAL</td>
                                               <td  style="color:black; text-align: center; vertical-align: middle; font-weight: 900;"><strong> {{p.total}}</strong></td>
                                               
                                              
@@ -198,12 +198,13 @@
 <script type="text/javascript" src= {% static 'app/js/simple_numbers_no_ellipses.js'%}></script>
 <script src={% static "app/js/paginator.js" %}></script>
 <script>
+  
   $(document).ready(function(){
-    
+      
       $(".dataTables_info").hide()
       $(".dtsp-emptyMessage").hide()
       $(".dataTables_paginate ").hide()
-      $(".dataTables_paginate ").hide()
+      
       $(".dataTables_paginate").show()
     })
 </script>

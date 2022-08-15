@@ -48,10 +48,13 @@
                                         </div>
                                         <div class="form-group col-md-12">
                                             <label for="obra">Obra a la que pertenece</label>
-                                            <select name="obra" id="obra">
+                                            <select name="obra" id="obra" required>
+                                                <option value='' selected>Selecciona una obra</option>
                                                 {% for o in obras  %}
                                                     <option value="{{o.id}}">{{o.nombre}}</option>
+                                                    
                                                 {% endfor %}
+                                                
                                                 </select>
                                         </div>
                                     </div>

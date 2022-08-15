@@ -102,8 +102,10 @@ def listar_inventario(request):
 def ins_bodega(request,id):
     
     productos=BodegaProductos.objects.all().select_related('obra','bodega').filter(bodega_id=id).values('clave','categoria','unidad','descripcion','xvilla','bodega_id__obra_id__total_villas').annotate(total=Sum(F('xvilla') * F('bodega_id__obra_id__total_villas')))
+    bodega=get_object_or_404(Bodega,id=id)
     data={
         'insumos':productos,
+        'bodega':bodega
         
     }
     return render(request,'app/bodega/insumo_gral.html',data)

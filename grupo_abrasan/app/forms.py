@@ -9,10 +9,10 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class UserRegisterForm(UserCreationForm):
-    username=forms.CharField(label='Username',widget=forms.TextInput)
-    password1=forms.CharField(label='Contraseña',widget=forms.TextInput)
-    password2=forms.CharField(label='Confirma Contraseña',widget=forms.PasswordInput)
-    user_type=forms.Select(attrs={'id':'user_type','name':'user_type','placeholder':'Tipo de Usuario'})
+    username=forms.CharField(label='Username',widget=forms.TextInput(attrs={'required':True}))
+    password1=forms.CharField(label='Contraseña',widget=forms.TextInput(attrs={'required':True}))
+    password2=forms.CharField(label='Confirma Contraseña',widget=forms.PasswordInput(attrs={'required':True}))
+    user_type=forms.Select(attrs={'id':'user_type','name':'user_type','placeholder':'Tipo de Usuario','required':True})
     class Meta:
         model=CustomUser
         fields=('username','password1','password2','user_type')+UserCreationForm.Meta.fields
@@ -110,8 +110,10 @@ class InsumosForm(forms.ModelForm):
     class Meta: 
             model=Insumos
             fields='__all__'
-            
-            
+            widgets={
+                'cantidad':forms.TextInput(attrs={'class':'form-control','id':'cantidad','name':'cantidad','for':'cantidad','required':True}),
+                
+            }
             
 class SolicitudForm(forms.ModelForm):
     class Meta:
