@@ -115,63 +115,63 @@
                                               </td>
                                               <td><span>{{p2.descripcion}}</span></td>
                                               <td>{{p2.bodega__nombre}}</td>
-                                              <td  style="color:black; text-align: center; vertical-align: middle; font-weight: 900;"><strong> {{p2.total}}</strong></td>
+                                              <td  style="color:black; text-align: center; vertical-align: middle; font-weight: 900;"><strong> {{p.total}}</strong></td>
                                               
                                              
                               </tr>
-                              {% for p in productos  %}
+                              {% for p2 in productos2  %}
                                 {% if p.descripcion == p2.descripcion %}
                               <tr>
                                 
                                 <td style="background-color:#110273; color:white;">
-                                  {% if p.categoria == '1' %}
+                                  {% if p2.categoria == '1' %}
                                   Equipo
-                                  {% elif p.categoria == '2' %}
+                                  {% elif p2.categoria == '2' %}
                                   Mueble
-                                  {% elif p.categoria == '3' %}
+                                  {% elif p2.categoria == '3' %}
                                   Accesorio
-                                  {% elif p.categoria == '4' %}
+                                  {% elif p2.categoria == '4' %}
                                   Herreria
-                                  {% elif p.categoria == '5' %}
+                                  {% elif p2.categoria == '5' %}
                                   Canceleria
-                                  {% elif p.categoria == '6' %}
+                                  {% elif p2.categoria == '6' %}
                                   Carpinteria
-                                  {% elif p.categoria == '7' %}
+                                  {% elif p2.categoria == '7' %}
                                   Acabado
-                                  {% elif p.categoria == '8' %}
+                                  {% elif p2.categoria == '8' %}
                                   Material
                                   {% endif %}
                               </td>
                               <td>
-                                  {% if p.unidad == '1' %}
+                                  {% if p2.unidad == '1' %}
                                   Pieza
-                                  {% elif p.unidad == '2' %}
+                                  {% elif p2.unidad == '2' %}
                                   Cubeta
-                                  {% elif p.unidad == '3' %}
+                                  {% elif p2.unidad == '3' %}
                                   Galón
-                                  {% elif p.unidad == '4' %}
+                                  {% elif p2.unidad == '4' %}
                                   Bulto
-                                  {% elif p.unidad == '5' %}
+                                  {% elif p2.unidad == '5' %}
                                   m³
-                                  {% elif p.unidad == '6' %}
+                                  {% elif p2.unidad == '6' %}
                                   Kg
-                                  {% elif p.unidad == '7' %}
+                                  {% elif p2.unidad == '7' %}
                                   Tonelada
-                                  {% elif p.unidad == '8' %}
+                                  {% elif p2.unidad == '8' %}
                                   Milla
-                                  {% elif p.unidad == '9' %}
+                                  {% elif p2.unidad == '9' %}
                                   Litro
-                                  {% elif p.unidad == '10' %}
+                                  {% elif p2.unidad == '10' %}
                                   Juego
-                                  {% elif p.unidad == '11' %}
+                                  {% elif p2.unidad == '11' %}
                                   Lote
-                                  {% elif p.unidad == '12' %}
+                                  {% elif p2.unidad == '12' %}
                                   m²
                                   {% endif %}
                               </td>
-                              <td><span>{{p.descripcion}}</span></td>
-                              <td>GENERAL</td>
-                              <td>{{p.total}}</td>
+                              <td><span>{{p2.descripcion}}</span></td>
+                              <td>{{p2.bodega__nombre}}</td>
+                              <td>{{p2.total}}</td>
                                 
                               </tr>
                               {% endif %}
