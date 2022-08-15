@@ -115,13 +115,13 @@
                                                     {% endif %}
                                                 </td>
                                                 <td><span>{{p.bodegaproducto_id__descripcion}}</span></td>
-                                                <td></td>
+                                                <td>GENERAL</td>
                                                 <td  style="color:black; text-align: center; vertical-align: middle; font-weight: 900;"><strong> {{p.total}}</strong></td>
                                                 
                                                
                                 </tr>
                                 {% for p2 in general  %}
-                                  {% if p.bodegaproducto_id__descripcion == p2.bodegaproducto_id__descripcion %}
+                                  {% if p.bodegaproducto_id__descripcion == p2.bodegaproducto_id__descripcion and p.bodegaproducto_id__unidad == p2.bodegaproducto_id__unidad and p.bodegaproducto_id__categoria == p2.bodegaproducto_id__categoria   %}
                                 <tr>
                                   
                                   <td style="background-color:#110273; color:white;">
