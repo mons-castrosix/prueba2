@@ -110,7 +110,7 @@ def ins_bodega(request,id):
     }
     return render(request,'app/bodega/insumo_gral.html',data)
 
-@permission_required('app.change_producto')
+@permission_required('app.change_bodegaproductos')
 def modificar_producto(request,id,bodega):
     producto=get_object_or_404(BodegaProductos,id=id)
     data={
