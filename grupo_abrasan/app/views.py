@@ -87,9 +87,9 @@ def panel(request):
 @permission_required('app.view_bodegaproductos')
 def listar_inventario(request):
     #PRODUCTOS GENERAL
-    productos=BodegaProductos.objects.all().select_related('obra').values('categoria','unidad','descripcion').annotate(total=Sum('cantidad')).order_by('descripcion','total')
+    productos=BodegaProductos.objects.all().select_related('obra').values('categoria','unidad','descripcion').annotate(total=Sum('cantidad'))
    #PRODUCTOS POR OBRA
-    productos2=BodegaProductos.objects.all().select_related('obra').values('clave','categoria','bodega__nombre','unidad','descripcion').annotate(total=Sum('cantidad')).order_by('descripcion','total')
+    productos2=BodegaProductos.objects.all().select_related('obra').values('clave','categoria','bodega__nombre','unidad','descripcion').annotate(total=Sum('cantidad'))
     
     data={'productos':productos,'productos2':productos2}
     print(data)
