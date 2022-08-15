@@ -139,7 +139,7 @@
                                     <td>
                                       
                                       
-                                      {% if perms.app.delete_bodegaproductos %}
+                                      {% if perms.app.add_bodegaproductos %}
                                       <a class="btn btn-sm" style="background-color:#110273; color:white" href="{% url 'app:modificar_producto' id=p.id bodega=bodega.id%}">Modificar</a>
                                       {% endif %}
                                       {% if perms.app.delete_bodegaproductos %}
