@@ -122,7 +122,11 @@
                                             <td><strong>{{c.compra}}</strong> </td>
                                             {% endif %}
                                         {% endfor %}
-
+                                        {% if s.recepcion__inicial == None  %}
+                                        <td>0</td>
+                                        {% else %}
+                                        <td><strong> {{s.recepcion__inicial}}</strong></td>
+                                        {% endif %}
                                         {% if s.recepcion__llegada == None  %}
                                         <td>0</td>
                                         {% else %}
