@@ -54,8 +54,9 @@
                                 <table cellspacing="0" id="tabla" class="table table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Clave solicitud</th>
+                                        
                                         <th>Producto</th>
+                                        <th>Clave solicitud</th>
                                         <th >Solicitud</th>
                                         <th>Fecha</th>
                                         <th >Solicita</th>
@@ -68,8 +69,9 @@
                                     <tbody>
                                     {% for s in solicitudes %}
                                     <tr>
-                                        <td>{{s.id}}</td>
+                                        
                                         <td>{{s.descripcion}}</td>
+                                        <td>{{s.id}}</td>
                                         <td>{{s.solicitud}}</td>
                                         <td>{{s.fecha}}</td>
                                         <td>{{s.solicita}}</td>
