@@ -9,7 +9,9 @@ urlpatterns=[
    path("",views.panel, name="home"),
    path("nosotros",views.nosotros, name="nosotros"),
    path("mision",views.mision, name="mision"),
-   path("vision",views.vision, name="vision")
+   path("vision",views.vision, name="vision"),
+   path("servicios-cliente",views.clientes, name="clientes"),
+   path("servicios-calidad",views.calidad, name="calidad")
    
    
    ]
