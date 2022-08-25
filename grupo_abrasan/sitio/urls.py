@@ -12,6 +12,7 @@ urlpatterns=[
    path("servicios-calidad/",views.calidad, name="calidad"),
    path("contacto/",views.contacto, name="contacto"),
    path("obras-ejecutadas/",views.obras, name="obras"),
-   path("obra-detalles/",views.detalles, name="detalles"),
+   
+   
    
    ]

@@ -66,7 +66,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="active" href={% url "sitio:home" %}>Inicio</a></li>
+          <li><a href={% url "sitio:home" %}>Inicio</a></li>
           <li><a href={% url "sitio:nosotros" %}>Nosotros</a></li>
           
           <li class="dropdown"><a href="#"><span>Servicios</span> <i class="bi bi-chevron-down"></i></a>
@@ -75,7 +75,7 @@
               <li><a href={% url "sitio:calidad" %}>Cálidad</a></li>
             </ul>
           </li>
-          <li><a href={% url "sitio:obras" %}>Obras Ejecutadas</a></li>
+          <li><a class="active"  href={% url "sitio:obras" %}>Obras Ejecutadas</a></li>
           <li><a href={% url "sitio:contacto" %}>Contacto</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -128,11 +128,11 @@
               <img src={% static 'img/portfolio/citelis1.PNG'%} class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Plaza Esfera City</h4>
-                <p>Trabajos de Albañileria Liverpool.
-                    </p>
+                <p>Trabajos de Albañileria Liverpool.</p>
+                <p>La Rioja, Monterrey, NL.</p>
+                <p>Enero, 2017</p>
                 <div class="portfolio-links">
                   
-                  <a href={% url "sitio:detalles" %} title="Más detalles"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -143,9 +143,11 @@
               <div class="portfolio-info">
                 <h4>Empresa Cinematográfica del Norte</h4>
                 <p>Trabajos de Muro durock</p>
+                <p>La Rioja, Monterrey, NL.</p>
+                <p>Noviembre, 2017</p>
                 <div class="portfolio-links">
                   
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                 
                 </div>
               </div>
             </div>
@@ -157,9 +159,12 @@
                 <div class="portfolio-info">
                   <h4>Plaza Esfera City</h4>
                   <p>Acabados Liverpool.</p>
+                  <p>La Rioja, Monterrey, NL.</p>
+                  <p>Enero, 2017</p>
+                  <p></p>
                 <div class="portfolio-links">
                   
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  
                 </div>
               </div>
             </div>
@@ -169,11 +174,13 @@
             <div class="portfolio-wrap">
               <img src={% static 'img/portfolio/tya1.PNG'%} class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>Torres Clásica</h4>
+                <h4>Torres Clásica Chapalita</h4>
                 <p>Fachada</p>
+                <p>Chapalita, Guadalajara Jal.</p>
+                <p>Junio, 2018</p>
                 <div class="portfolio-links">
                  
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  
                 </div>
               </div>
             </div>
@@ -184,11 +191,12 @@
               <img src={% static 'img/portfolio/vacay1.PNG'%} class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Vacay Develoment</h4>
-                <p>Atman, Residences
-                    </p>
+                <p>Atman, Residences</p>
+                <p>Calle 29, Av Kukulkan, Region 15, 77760 Tulum,Q.R.</p>
+                <p>Enero, 2021 </p>
                 <div class="portfolio-links">
                   
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                 
                 </div>
               </div>
             </div>
@@ -198,11 +206,12 @@
             <div class="portfolio-wrap">
               <img src={% static 'img/portfolio/tya4.PNG'%} class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>Torres Clásica</h4>
+                <h4>Torres Clásica Chapalita</h4>
                 <p>Muros y Plafones</p>
+                <p>Chapalita, Guadalajara Jal.</p>
+                <p>Julio, 2018</p>
                 <div class="portfolio-links">
                   
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -215,6 +224,9 @@
               <div class="portfolio-info">
                 <h4>H. Ayuntamiento de Metepec</h4>
                 <p>Teatro Quimera</p>
+                <p>Metepec, Estado de México</p>
+                <p>Enero, 2016</p>
+                <p>Febrero, 2017</p>
                 <div class="portfolio-links">
                   
                   <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
@@ -228,9 +240,11 @@
               <div class="portfolio-info">
                 <h4>Torres Clásica Chapalita</h4>
                 <p>Acabados en Amenidades</p>
+                <p>Chapalita, Guadalajara Jal.</p>
+                <p>Junio, 2018</p>
                 <div class="portfolio-links">
                   
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  
                 </div>
               </div>
             </div>
@@ -243,9 +257,11 @@
               <div class="portfolio-info">
                 <h4>Torres Clásica Chapalita</h4>
                 <p>Construcción de Alberca </p>
+                <p>Chapalita, Guadalajara Jal.</p>
+                <p>Junio, 2018</p>
                 <div class="portfolio-links">
                   
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  
                 </div>
               </div>
             </div>
@@ -255,8 +271,9 @@
               <img src={% static 'img/portfolio/citelis3.PNG'%} class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Plaza Esfera</h4>
-                <p>Deslave Gaviones
-                    </p>
+                <p>Deslave Gaviones</p>
+                <p>Querétaro, Qro.</p>
+                <p>Junio, 2017</p>
                 <div class="portfolio-links">
                   
                   <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
@@ -270,10 +287,12 @@
               <img src={% static 'img/portfolio/sfelipe.PNG'%} class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>H. Ayuntamiento de San Felipe</h4>
-                <p>Construcción de Auditorio</p>
+                <p>Construcción de Auditorio Municipal</p>
+                <p>San Felipe del Progreso, Edo Mex.</p>
+                <p>Agosto, 2015</p>
                 <div class="portfolio-links">
                   
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  
                 </div>
               </div>
             </div>
@@ -284,22 +303,26 @@
               <div class="portfolio-info">
                 <h4>Ravisa Haus SA de CV.</h4>
                 <p>Mercedes Benz Mantenimiento y Cambio de Imagen Corporativa</p>
+                <p>Av, Constituyentes Querétaro, Qro.</p>
+                <p>Julio, 2017</p>
                 <div class="portfolio-links">
                   
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  
                 </div>
               </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 portfolio-item filter-privada">
             <div class="portfolio-wrap">
-              <img src={% static 'img/portfolio/privada.PNG'%} class="img-fluid" alt="">
+              <img src={% static 'img/portfolio/privada.jpg'%} class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Iniciativa Privada</h4>
                 <p>Construcción de Verificentro</p>
+                <p>San Jerónimo Chicahualco, Metepec, Estado de México</p>
+                <p>Enero, 2017</p>
                 <div class="portfolio-links">
                   
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  
                 </div>
               </div>
             </div>
@@ -309,8 +332,9 @@
               <img src={% static 'img/portfolio/vacay2.PNG'%} class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Vacay Develoment</h4>
-                <p>Construcción de Auditorio
-                    </p>
+                <p>Construcción de Auditorio</p>
+                <p>Calle 39, Mza 333, Tulum Region 15, 77760 Tulum, Q.R. </p>
+                <p>Noviembre, 2021</p>
                 <div class="portfolio-links">
                   
                   <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
@@ -324,9 +348,11 @@
               <div class="portfolio-info">
                 <h4>Torres Clásica Chapalita</h4>
                 <p>Colocación de Piso </p>
+                <p>Chapalita, Guadalajara Jal.</p>
+                <p>Junio, 2018</p>
                 <div class="portfolio-links">
                   
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  
                 </div>
               </div>
             </div>
