@@ -1,0 +1,376 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Obras Ejecutadas - Grupo Abrasan </title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href={% static "img/logoo.png"%}  rel="icon">
+  <link href={% static "img/logoo.png"%} rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href={% static 'vendor/animate.css/animate.min.css'%}  rel="stylesheet">
+  <link href={% static 'vendor/bootstrap/css/bootstrap.min.css'%}  rel="stylesheet">
+  <link href={% static 'vendor/bootstrap-icons/bootstrap-icons.css'%}   rel="stylesheet">
+  <link href={% static 'vendor/boxicons/css/boxicons.min.css'%}  rel="stylesheet">
+  <link href={% static 'vendor/glightbox/css/glightbox.min.css'%} rel="stylesheet">
+  <link href={% static 'vendor/swiper/swiper-bundle.min.css'%} rel="stylesheet">
+  
+
+  <!-- Template Main CSS File -->
+  <link href={% static "css/style.css"%} rel="stylesheet">
+  
+
+  
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <section id="topbar" class="d-flex align-items-center">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+      <div class="contact-info d-flex align-items-center">
+        <i style="color:#F20505" class="bi bi-envelope d-flex align-items-center"><a href="">admon@abrasan.com.mx</a></i>
+        <!-- <i style="color:#F20505" class="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i> -->
+      </div>
+      <div class="social-links d-none d-md-flex align-items-center">
+        <!-- 
+        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+        -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex justify-content-between align-items-center">
+
+      <div class="logo">
+        <h1><a href={% url "sitio:home" %}><img src={% static 'img/logoo.png' %} alt="logo" class="img-fluid"></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="active" href={% url "sitio:home" %}>Inicio</a></li>
+          <li><a href={% url "sitio:nosotros" %}>Nosotros</a></li>
+          
+          <li class="dropdown"><a href="#"><span>Servicios</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href={% url "sitio:clientes" %}>Clientes</a></li>
+              <li><a href={% url "sitio:calidad" %}>Cálidad</a></li>
+            </ul>
+          </li>
+          <li><a href={% url "sitio:obras" %}>Obras Ejecutadas</a></li>
+          <li><a href={% url "sitio:contacto" %}>Contacto</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+ 
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="index.html">Inicio</a></li>
+          <li>Obras Ejecutadas</li>
+        </ol>
+        <h2>Obras Ejecutadas</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">Todos</li>
+              <li data-filter=".filter-app">Citelis SA de CV</li>
+              <li data-filter=".filter-card">Tierra y Armonia</li>
+              <li data-filter=".filter-web">Ravisa Haus SA de CV</li>
+              <li data-filter=".filter-cine">Empresa Cinematográfica del Norte</li>
+              <li data-filter=".filter-metepec">H. Ayuntamiento de Metepec</li>
+              <li data-filter=".filter-privada">Iniciativa Privada</li>
+              <li data-filter=".filter-sfelipe">H. Ayuntamiento de San Felipe</li>
+              <li data-filter=".filter-vacay">Vacay Develoment</li>
+              
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src={% static 'img/portfolio/citelis1.PNG'%} class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Plaza Esfera City</h4>
+                <p>Trabajos de Albañileria Liverpool.
+                    </p>
+                <div class="portfolio-links">
+                  
+                  <a href={% url "sitio:detalles" %} title="Más detalles"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-cine">
+            <div class="portfolio-wrap">
+              <img src={% static 'img/portfolio/cine.PNG'%}  class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Empresa Cinematográfica del Norte</h4>
+                <p>Trabajos de Muro durock</p>
+                <div class="portfolio-links">
+                  
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+                <img src={% static 'img/portfolio/citelis2.PNG'%} class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Plaza Esfera City</h4>
+                  <p>Acabados Liverpool.</p>
+                <div class="portfolio-links">
+                  
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src={% static 'img/portfolio/tya1.PNG'%} class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Torres Clásica</h4>
+                <p>Fachada</p>
+                <div class="portfolio-links">
+                 
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-vacay">
+            <div class="portfolio-wrap">
+              <img src={% static 'img/portfolio/vacay1.PNG'%} class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Vacay Develoment</h4>
+                <p>Atman, Residences
+                    </p>
+                <div class="portfolio-links">
+                  
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src={% static 'img/portfolio/tya4.PNG'%} class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Torres Clásica</h4>
+                <p>Muros y Plafones</p>
+                <div class="portfolio-links">
+                  
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-metepec">
+            <div class="portfolio-wrap">
+              <img src={% static 'img/portfolio/metepec.PNG'%} class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>H. Ayuntamiento de Metepec</h4>
+                <p>Teatro Quimera</p>
+                <div class="portfolio-links">
+                  
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src={% static 'img/portfolio/tya3.PNG'%} class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Torres Clásica Chapalita</h4>
+                <p>Acabados en Amenidades</p>
+                <div class="portfolio-links">
+                  
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src={% static 'img/portfolio/tya2.PNG'%} class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Torres Clásica Chapalita</h4>
+                <p>Construcción de Alberca </p>
+                <div class="portfolio-links">
+                  
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src={% static 'img/portfolio/citelis3.PNG'%} class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Plaza Esfera</h4>
+                <p>Deslave Gaviones
+                    </p>
+                <div class="portfolio-links">
+                  
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-sfelipe">
+            <div class="portfolio-wrap">
+              <img src={% static 'img/portfolio/sfelipe.PNG'%} class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>H. Ayuntamiento de San Felipe</h4>
+                <p>Construcción de Auditorio</p>
+                <div class="portfolio-links">
+                  
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src={% static 'img/portfolio/ravisa1.PNG'%} class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Ravisa Haus SA de CV.</h4>
+                <p>Mercedes Benz Mantenimiento y Cambio de Imagen Corporativa</p>
+                <div class="portfolio-links">
+                  
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-privada">
+            <div class="portfolio-wrap">
+              <img src={% static 'img/portfolio/privada.PNG'%} class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Iniciativa Privada</h4>
+                <p>Construcción de Verificentro</p>
+                <div class="portfolio-links">
+                  
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-vacay">
+            <div class="portfolio-wrap">
+              <img src={% static 'img/portfolio/vacay2.PNG'%} class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Vacay Develoment</h4>
+                <p>Construcción de Auditorio
+                    </p>
+                <div class="portfolio-links">
+                  
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src={% static 'img/portfolio/tya5.PNG'%} class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Torres Clásica Chapalita</h4>
+                <p>Colocación de Piso </p>
+                <div class="portfolio-links">
+                  
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+
+    <!-- ======= Clients Section ======= -->
+   
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Grupo Abrasan</span></strong>. 
+      </div>
+      <div class="credits">
+        Diseñado por <a href="http://www.jadels.xyz/">Jadels Corp</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src={% static "vendor/purecounter/purecounter_vanilla.js"%}></script>
+  <script src={% static "vendor/bootstrap/js/bootstrap.bundle.min.js"%}></script>
+  <script src={% static "vendor/glightbox/js/glightbox.min.js"%}></script>
+  <script src={% static "vendor/isotope-layout/isotope.pkgd.min.js"%}></script>
+  <script src={% static "vendor/swiper/swiper-bundle.min.js"%}></script>
+  <script src={% static "vendor/waypoints/noframework.waypoints.js"%}></script>
+  
+
+  <!-- Template Main JS File -->
+  <script src={% static "js/main.js"%}></script>
+  
+
+</body>
+
+</html>
