@@ -69,34 +69,7 @@
                               <td>{{i.fecha| date:"SHORT_DATE_FORMAT"}}</td>
                               <td>{{i.cantidad}}</td>
                               <td>
-
-                              
-                                  {% if i.bodegaproducto.unidad == '1' %}
-                                  Pieza
-                                  {% elif i.bodegaproducto.unidad == '2' %}
-                                  Cubeta
-                                  {% elif i.bodegaproducto.unidad == '3' %}
-                                  Galón
-                                  {% elif i.bodegaproducto.unidad == '4' %}
-                                  Bulto
-                                  {% elif i.bodegaproducto.unidad == '5' %}
-                                  m³
-                                  {% elif i.bodegaproducto.unidad == '6' %}
-                                  Kg
-                                  {% elif i.bodegaproducto.unidad == '7' %}
-                                  Tonelada
-                                  {% elif i.bodegaproducto.unidad == '8' %}
-                                  Milla
-                                  {% elif i.bodegaproducto.unidad == '9' %}
-                                  Litro
-                                  {% elif i.bodegaproducto.unidad == '10' %}
-                                  Juego
-                                  {% elif i.bodegaproducto.unidad == '11' %}
-                                  Lote
-                                  {% elif  i.bodegaproducto.unidad == '12'  %}
-                                  m²
-                                  {% endif %}
-                          
+                                {{i.bodegaproducto.unidad}}
 
                               </td>
                               <td>

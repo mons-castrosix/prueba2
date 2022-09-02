@@ -68,35 +68,7 @@
                               <td>{{i.descripcion}}</td>
                               
                               <td>
-
-                              
-                                  {% if i.unidad == '1' %}
-                                  Pieza
-                                  {% elif i.unidad == '2' %}
-                                  Cubeta
-                                  {% elif i.unidad == '3' %}
-                                  Galón
-                                  {% elif i.unidad == '4' %}
-                                  Bulto
-                                  {% elif i.unidad == '5' %}
-                                  m³
-                                  {% elif i.unidad == '6' %}
-                                  Kg
-                                  {% elif i.unidad == '7' %}
-                                  Tonelada
-                                  {% elif i.unidad == '8' %}
-                                  Milla
-                                  {% elif i.unidad == '9' %}
-                                  Litro
-                                  {% elif i.unidad == '10' %}
-                                  Juego
-                                  {% elif i.unidad == '11' %}
-                                  Lote
-                                  {% elif  i.unidad == '12'  %}
-                                  m²
-                                  {% endif %}
-                          
-
+                                {{i.unidad}}
                               </td>
                               <td id="multiplicando">
                                   {{i.xvilla}}

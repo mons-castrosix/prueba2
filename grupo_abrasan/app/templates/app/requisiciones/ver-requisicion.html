@@ -92,34 +92,8 @@
                                         <td><strong> {{s.recepcion__inicial}}</strong></td>
                                         {% endif %}
                                         <td>
-                                          {% if s.unidad == '1' %}
-                                          Pieza
-                                          {% elif s.unidad == '2' %}
-                                          Cubeta
-                                          {% elif s.unidad == '3' %}
-                                          Galón
-                                          {% elif s.unidad == '4' %}
-                                          Bulto
-                                          {% elif s.unidad == '5' %}
-                                          m³
-                                          {% elif s.unidad == '6' %}
-                                          Kg
-                                          {% elif s.unidad == '7' %}
-                                          Tonelada
-                                          {% elif s.unidad == '8' %}
-                                          Milla
-                                          {% elif s.unidad == '9' %}
-                                          Litro
-                                          {% elif s.unidad == '10' %}
-                                          Juego
-                                          {% elif s.unidad == '11' %}
-                                          Lote
-                                          {% elif s.unidad == '12' %}
-                                          m²
-                                          {% endif %}
-
-
-                                      </td>
+                                         {{s.unidad}}
+                                        </td>
                                         <td><strong style="color:#F20505;"> {{s.cantidad}}</strong></td>
                                         {% for c in compra %}
                                             {% if s.id == c.solicitud_id %}

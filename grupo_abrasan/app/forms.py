@@ -77,7 +77,7 @@ class BodegaProducto(forms.ModelForm):
             widgets={
                 'proveedor':forms.TextInput(attrs={'class':'form-control','id':'proveedor','name':'proveedor','for':'proveedor','required':True}),
                 'categoria':forms.Select(attrs={'class':'form-control','id':'cantegoria','name':'categoria','for':'categoria','required':True}),
-                'unidad':forms.Select(attrs={'class':'form-control','id':'unidad','name':'unidad','for':'unidad','required':True}),
+                'unidad':forms.TextInput(attrs={'class':'form-control','id':'unidad','name':'unidad','for':'unidad','required':True}),
                 'descripcion':forms.TextInput(attrs={'class':'form-control','id':'descripcion','name':'descripcion','for':'descripcion','required':True}),
                 'ubicacion':forms.TextInput(attrs={'class':'form-control','id':'ubicacion','name':'ubicacion','for':'ubicacion','required':True}),
                 'cantidad':forms.TextInput(attrs={'class':'form-control','id':'cantidad','name':'cantidad','for':'cantidad','required':True}),

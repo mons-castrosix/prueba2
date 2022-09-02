@@ -42,7 +42,7 @@ class BodegaProductos(models.Model):
     
     clave=models.CharField(max_length=30, unique=True,default="")
     categoria=models.CharField(max_length=80, choices=choices_categoria,default=0)
-    unidad=models.CharField(max_length=80, choices=choices_unidad,default=0)
+    unidad=models.CharField(max_length=80,default="")
     descripcion = models.CharField(max_length=200,default="")
     proveedor = models.CharField(max_length=500,default="")
     bodega=models.ForeignKey(Bodega,to_field="id", on_delete=models.CASCADE)

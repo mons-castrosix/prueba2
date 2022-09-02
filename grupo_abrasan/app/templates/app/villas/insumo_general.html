@@ -88,31 +88,9 @@
                                                     {% endif %}
                                                 </td>
                                                 <td>
-                                                    {% if p.bodegaproducto_id__unidad == '1' %}
-                                                    Pieza
-                                                    {% elif p.bodegaproducto_id__unidad == '2' %}
-                                                    Cubeta
-                                                    {% elif p.bodegaproducto_id__unidad == '3' %}
-                                                    Galón
-                                                    {% elif p.bodegaproducto_id__unidad == '4' %}
-                                                    Bulto
-                                                    {% elif p.bodegaproducto_id__unidad == '5' %}
-                                                    m³
-                                                    {% elif p.bodegaproducto_id__unidad == '6' %}
-                                                    Kg
-                                                    {% elif p.bodegaproducto_id__unidad == '7' %}
-                                                    Tonelada
-                                                    {% elif p.bodegaproducto_id__unidad == '8' %}
-                                                    Milla
-                                                    {% elif p.bodegaproducto_id__unidad == '9' %}
-                                                    Litro
-                                                    {% elif p.bodegaproducto_id__unidad == '10' %}
-                                                    Juego
-                                                    {% elif p.bodegaproducto_id__unidad == '11' %}
-                                                    Lote
-                                                    {% elif p.bodegaproducto_id__unidad == '12' %}
-                                                    m²
-                                                    {% endif %}
+                                                  {{p.bodegaproducto_id__unidad}}
+                                                    
+                                                   
                                                 </td>
                                                 <td><span>{{p.bodegaproducto_id__descripcion}}</span></td>
                                                 <td>GENERAL</td>
@@ -144,31 +122,7 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    {% if p2.bodegaproducto_id__unidad == '1' %}
-                                    Pieza
-                                    {% elif p2.bodegaproducto_id__unidad == '2' %}
-                                    Cubeta
-                                    {% elif p2.bodegaproducto_id__unidad == '3' %}
-                                    Galón
-                                    {% elif p2.bodegaproducto_id__unidad == '4' %}
-                                    Bulto
-                                    {% elif p2.bodegaproducto_id__unidad == '5' %}
-                                    m³
-                                    {% elif p2.bodegaproducto_id__unidad == '6' %}
-                                    Kg
-                                    {% elif p2.bodegaproducto_id__unidad == '7' %}
-                                    Tonelada
-                                    {% elif p2.bodegaproducto_id__unidad == '8' %}
-                                    Milla
-                                    {% elif p2.bodegaproducto_id__unidad == '9' %}
-                                    Litro
-                                    {% elif p2.bodegaproducto_id__unidad == '10' %}
-                                    Juego
-                                    {% elif p2.bodegaproducto_id__unidad == '11' %}
-                                    Lote
-                                    {% elif p2.bodegaproducto_id__unidad == '12' %}
-                                    m²
-                                    {% endif %}
+                                  {{p2.bodegaproducto_id__unidad}}
                                 </td>
                                 <td><span>{{p2.bodegaproducto_id__descripcion}}</span></td>
                                 <td>{{p2.villa_id__identificador}}</td>

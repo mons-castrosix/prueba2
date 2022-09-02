@@ -103,30 +103,8 @@
                                     
                                     <td>{{p.descripcion}}</td>
                                     <td>{{p.proveedor}}</td>
-                                     <td>
-                                                      {% if p.unidad == '1' %}
-                                                      Pieza
-                                                      {% elif p.unidad == '2' %}
-                                                      Cubeta
-                                                      {% elif p.unidad == '3' %}
-                                                      Galón
-                                                      {% elif p.unidad == '4' %}
-                                                      Bulto
-                                                      {% elif p.unidad == '5' %}
-                                                      m³
-                                                      {% elif p.unidad == '6' %}
-                                                      Kg
-                                                      {% elif p.unidad == '7' %}
-                                                      Tonelada
-                                                      {% elif p.unidad == '8' %}
-                                                      Milla
-                                                      {% elif p.unidad == '9' %}
-                                                      Litro
-                                                      {% elif p.unidad == '10' %}
-                                                      Juego
-                                                      {% elif p.unidad == '11' %}
-                                                      Lote
-                                                      {% endif %}
+                                    <td>
+                                    {{p.unidad}}                 
                                     </td>
                                     <td>
                                       {% if p.cantidad <= p.minimo %}
