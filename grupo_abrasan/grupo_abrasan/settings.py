@@ -138,4 +138,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 LOGIN_REDIRECT_URL='/inventario/panel'
 
-
+DATA_UPLOAD_MAX_NUMBER_FIELDS=None
