@@ -82,48 +82,61 @@
                                     </thead>
                                     <tbody>
                                     {% for s in solicitudes %}
+                                    
+                                    
                                     <tr>
                                         <td>{{s.id}}</td>
                                         <td>{{s.descripcion}}</td>
                                         <td><strong> {{s.bodegaproducto_id__cantidad}}</strong></td>
+                                        <td>
                                         {% if s.recepcion__inicial == None  %}
-                                        <td>0</td>
+                                        <span>0</span>
                                         {% else %}
-                                        <td><strong> {{s.recepcion__inicial}}</strong></td>
+                                        <span><strong> {{s.recepcion__inicial}}</strong></span>
                                         {% endif %}
+                                        </td>
+
                                         <td>
                                          {{s.unidad}}
                                         </td>
                                         <td><strong style="color:#F20505;"> {{s.cantidad}}</strong></td>
+                                        <td>
                                         {% for c in compra %}
                                             {% if s.id == c.solicitud_id %}
-                                            <td><strong>{{c.compra}}</strong> </td>
+                                            <strong>{{c.compra}}</strong>
                                             {% endif %}
                                         {% endfor %}
-                                        
+                                        </td>
+                                        <td>
                                         {% if s.recepcion__llegada == None  %}
-                                        <td>0</td>
+                                        <span>0</span>
                                         {% else %}
-                                        <td><strong> {{s.recepcion__llegada}}</strong></td>
+                                        <span><strong> {{s.recepcion__llegada}}</strong></span>
                                         {% endif %}
-                                       
+                                        </td>
+
+                                        <td>
                                         {% if s.recepcion__pendiente == None %}
-                                        <td>0</td>
+                                        <span>0</span>
                                         {% else %}
-                                        <td>{{s.recepcion__pendiente}}</td>
+                                        <span>{{s.recepcion__pendiente}}</span>
                                         {% endif %}
-
+                                        </td>
+                                        <td>
                                         {% if s.recepcion__utilizado == None %}
-                                        <td>0</td>
+                                        <span>0</span>
                                         {% else %}
-                                        <td><strong> {{s.recepcion__utilizado}}</strong></td>
+                                        <span><strong> {{s.recepcion__utilizado}}</strong></span>
                                         {% endif %}
+                                        </td>
+                                        <td>
+                                          {% if s.recepcion__saldo == None %}
+                                          <span>0</span>
+                                          {% else %}
+                                          <span><strong> {{s.recepcion__saldo}}</strong></span>
+                                          {% endif %}
+                                          </td>
 
-                                        {% if s.recepcion__saldo == None %}
-                                        <td>0</td>
-                                        {% else %}
-                                        <td>{{s.recepcion__saldo}}</td>
-                                        {% endif %}
 
                                       <td>
                                         {% if perms.app.delete_solicitud %}

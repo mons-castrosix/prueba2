@@ -970,6 +970,7 @@ def requisiciones(request,solicitud):
     compra=Compra.objects.select_related('solicitud').filter(solicitud_id__in=id).values() 
     solicita=Solicitud.objects.select_related('obra').values('solicita','fecha','obra__nombre').filter(solicitud=solicitud).first()
     print(solicita)
+    print(solicitudes)
     data={
         'solicitudes':solicitudes,
         'form':RecepcionForm(),
