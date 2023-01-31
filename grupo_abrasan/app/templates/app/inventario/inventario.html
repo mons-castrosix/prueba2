@@ -33,7 +33,7 @@
                 <div class="card-header" style="background-color:#110273;">
                   <div class="row">     
                     <div class="col-6">
-                      <h3 style="color:white">Catalogo de Accesorios - Materiales - Equipos</h3>
+                      <h3 style="color:white" id="identificador">Catalogo de Accesorios - Materiales - Equipos</h3>
                     </div>
                     <div class="col-6">
                      
@@ -52,7 +52,7 @@
                     <div class="row mt-2">
                       <div class="col-12">
                         <div class="table-responsive">
-                          <table cellspacing="0" id="tabla" class="table table-hover">
+                          <table cellspacing="0" id="excel" class="table table-hover">
                             <thead>
                               <tr>
                                 
@@ -155,14 +155,50 @@
 <script type="text/javascript" src= {% static 'app/js/simple_numbers_no_ellipses.js'%}></script>
 <script src={% static "app/js/paginator.js" %}></script>
 <script>
-  
+
   $(document).ready(function(){
+    var dynamicVariable='Inventario General'
+    var date = new Date($.now());
+    var dateString = (date.getFullYear() + '-'+ ('0' + (date.getMonth() + 1)).slice(-2)+ '-' + ('0' + (date.getDate())).slice(-2));
+    console.log(dateString);
+    $("#excel").DataTable({
       
-      $(".dataTables_info").hide()
-      $(".dtsp-emptyMessage").hide()
-      $(".dataTables_paginate ").hide()
-      
-      $(".dataTables_paginate").show()
-    })
-</script>
+      "spaginationType": "simple_numbers_no_ellipses",
+        dom:"PBfrtip",
+        searchPanes:{initCollapsed:true},
+        "pageLength": 12,
+        buttons:{
+          dom:{
+            button:{
+              className:'btn'
+            }
+          },
+          buttons:[
+          {
+            extend:"excel",
+            text:'Exportar a excel',
+            className:'btn btn-outlime-success',
+            excelStyles:{
+              template:'header_blue'
+            },
+            filename:dynamicVariable+"_"+dateString,
+            title:"Inventario General"+"  "+dateString,
+            sheetName:" "+dynamicVariable+" "+dateString
+            
+          }]
+        }
+    });
+   
+    $(".dtsp-title").hide()
+    $(".dtsp-emptyMessage").hide()
+    $(".dtsp-collapseAll").html('Colapsar Todo')
+    $(".dtsp-showAll").html('Ver Todo')
+    $(".dtsp-clearAll").html('Limpiar todo')
+    $(".dataTables_info ").hide()
+    $(".buttons-excel ").show()
+    
+    $(".dataTables_info ").hide()
+  })
+  
+  </script>
 </html>

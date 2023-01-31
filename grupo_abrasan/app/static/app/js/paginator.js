@@ -41,6 +41,7 @@ $(document).ready(function(){
     $(".dtsp-clearAll").html('Limpiar todo')
     $(".dataTables_info ").hide()
     $(".buttons-excel ").hide()
+    
   });
 
   /**
